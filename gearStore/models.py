@@ -7,7 +7,7 @@ from django.template.defaultfilters import slugify
 class Category(models.Model):
     name = models.CharField(max_length=128, unique=True)
     description = models.CharField(max_length=128)
-    dateAdded = models.DateTimeField(default=django.utils.timezone.now())
+    dateAdded = models.DateField(auto_now_add=True)
     picture = models.ImageField(upload_to="category_images", default="category_images/default.png")
     slug = models.SlugField(unique=True)
 
@@ -44,7 +44,7 @@ class Gear(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     name = models.CharField(max_length=128)
     description = models.CharField(max_length=128)
-    dateAdded = models.DateField()
+    dateAdded = models.DateField(auto_now_add=True)
     picture = models.ImageField(default="gear_images/default.png")
     colour = models.CharField(max_length=6, choices=COLOUR_CHOICES, default="GREEN")
     size = models.CharField(max_length=30)
@@ -59,4 +59,3 @@ class Gear(models.Model):
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name)
         super(Gear, self).save(*args, **kwargs)
-        
