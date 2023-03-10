@@ -1,14 +1,8 @@
-<!DOCTYPE html>
+{% extends 'gearStore/base.html' %}
 
 {% load staticfiles %}
 
-<html>
-
-	<head> 
-		<title>Gear Store</title>
-	</head>
-
-	<body>
+{% block body_block %}
 		<h1>Gear Store</h1> 
 		<div>
 			<strong>{{ boldmessage }}</strong><br /> 
@@ -18,5 +12,4 @@
 			<img src="{% static 'images/test.jpeg' %}" 
 				 alt="Test picture" />
 		</div> 
-	</body>
-</html>
+{% endblock %}

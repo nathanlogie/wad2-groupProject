@@ -1,0 +1,35 @@
+/*
+    Header styling
+*/
+header h1 {
+    float: left;
+}
+header ul.loginOrAccountLinks {
+    float: right;
+}
+
+header ul.navbar {
+    clear: both;
+}
+
+header ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+
+}
+
+header ul li {
+    display: inline-block;
+}
+
+/*
+    Body styling
+*/
+
+/*
+    Footer styling
+*/
+footer p.copyright {
+    text-align: center;
+}
