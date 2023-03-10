@@ -4,5 +4,9 @@ from django.shortcuts import render
 
 # Create your views here.
 def index(request):
-    return HttpResponse("Test")
+    context_dict = {'boldmessage': 'This is the Blod Message'}
+    return render(request, 'gearStore/index.html', context=context_dict)
+
+def about(request):
+    return render(request, 'gearStore/about.html')
 
