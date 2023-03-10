@@ -78,3 +78,6 @@ def about(request):
 
 def contact(request):
     return render(request, 'gearStore/contact.html')
+
+def gear(request):
+    return render(request, 'gearStore/gear.html')
