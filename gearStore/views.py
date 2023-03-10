@@ -11,7 +11,7 @@ from gearStore.models import UserProfile, Category
 def index(request):
     context_dict = {}
     context_dict['boldmessage'] = 'This is the Blod Message'
-    if request.user.is_authenticated():
+    if request.user.is_authenticated:
         context_dict["user_profile"] = UserProfile.objects.get(user = request.user)
     else:
         context_dict["user_profile"] = None
