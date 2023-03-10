@@ -10,20 +10,25 @@
         <div class="form-container">
             <div class="form-value">
                 <form action="">
-                    <h2>Login</h2>
+                    <h2>Sign Up</h2>
                     <div class="inputbox">
                         <ion-icon name="person-outline"></ion-icon>
                         <input type="username" required>
                         <Label for="">Username</Label>
                     </div>
                     <div class="inputbox">
+                        <ion-icon name="mail-outline"></ion-icon>
+                        <input type="email" required>
+                        <Label for="">Email</Label>
+                    </div>
+                    <div class="inputbox">
                         <ion-icon name="lock-closed-outline"></ion-icon>
                         <input type="password" required>
                         <Label for="">Password</Label>
                     </div>
-                    <button>Log in</button>
+                    <button>Sign Up</button>
                     <div class="register">
-                        <p>Don't have an account <a href="{% url 'gearStore:register' %}">Sign Up</a></p>
+                        <p>Already have an account <a href="{% url 'gearStore:login' %}">Login</a></p>
                     </div>
                 </form>
             </div>
