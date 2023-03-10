@@ -19,18 +19,18 @@
 
             <ul class="loginOrAccountLinks">
             {% if user.is_authenticated %}
-                <li>My Account</li>
+                <li><a href="{% url 'gearStore:index' %}">My Account</a></li>
             {% else %}
-                <li>Login</li>
-                <li>Register</li>
+                <li><a href="{% url 'gearStore:login' %}">Login</a></li>
+                <li><a href="{% url 'gearStore:register' %}">Register</a></li>
             {% endif %}
             </ul>
 
             <ul class="navbar">
-                <li>Home</li>
-                <li>About</li>
-                <li>Gear</li>
-                <li>Contact Us</li>
+                <li><a href="{% url 'gearStore:index' %}">Index</a></li>
+                <li><a href="{% url 'gearStore:index' %}">About</a></li>
+                <li><a href="{% url 'gearStore:index' %}">Gear</a></li>
+                <li><a href="{% url 'gearStore:contact' %}">Contact Us</a></li>
             </ul>
         </header>
         {% block body_block %}
