@@ -10,9 +10,9 @@ from gearStore.models import UserProfile, Category
 # Create your views here.
 def index(request):
     context_dict = {}
-    context_dict['boldmessage'] = 'This is the Blod Message'
+    context_dict['boldmessage'] = 'This is the Bold Message'
     if request.user.is_authenticated:
-        context_dict["user_profile"] = UserProfile.objects.get(user = request.user)
+        context_dict["user_profile"] = UserProfile.objects.get(user=request.user)
     else:
         context_dict["user_profile"] = None
     context_dict["categories"] = Category.objects.all()
