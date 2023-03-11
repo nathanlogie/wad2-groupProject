@@ -35,12 +35,35 @@
                 <li><a href="{% url 'gearStore:contact' %}">Contact Us</a></li>
             </ul>
         </header>
-        {% block body_block %}
-        {% endblock %}
+
+        <div id="main-body">
+            <div id="left-sidebar" class="body-column">
+                <h2>Gear Types</h2>
+                <!-- TODO auto generate gear types -->
+                <ul>
+                    <li><a href="">Boots</a></li>
+                    <li><a href="">Crampons</a></li>
+                    <li><a href="">Ice Axes</a></li>
+                </ul>
+
+            </div>
+
+            <div id="content" class="body-column">
+                {% block body_block %}
+                {% endblock %}
+            </div>
+
+            <div id="right-sidebar" class="body-column">
+                <h2>Useful Links</h2>
+                <ul>
+                    <li><a href="">MWIS</a></li>
+                    <li><a href="">AAIS</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <footer>
+            <p class="copyright">Copyright Group 10E</p>
+        </footer>
     </body>
-
-    <footer>
-        <p class="copyright">Copyright Group 10E</p>
-    </footer>
-
 </html>

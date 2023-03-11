@@ -2,6 +2,10 @@
     Header styling
 */
 
+header {
+    margin-top: 20px;
+}
+
 header .top-bar {
     margin: 0;
     padding: 0;
@@ -11,6 +15,7 @@ header .top-bar {
 header .top-bar h1 {
     float: left;
     display: inline;
+    padding-left: 20px;
 }
 
 header ul {
@@ -26,6 +31,11 @@ header .top-bar ul.loginOrAccountLinks {
     float: right;
     display: inline;
     vertical-align: middle;
+}
+
+header .top-bar ul.loginOrAccountLinks li {
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
 header ul.navbar {
@@ -47,8 +57,26 @@ a {
 }
 
 /*
-    Body styling
+    Main body styling
 */
+#main-body {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.body-column {
+    margin-right: 10px;
+    margin-left: 10px;
+
+}
+
+h1 {
+    margin: 0;
+}
+
+#content {
+    padding-top: 40px;
+}
 
 /*
     Footer styling
