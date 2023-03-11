@@ -1,26 +1,49 @@
 /*
     Header styling
 */
-header h1 {
-    float: left;
-}
-header ul.loginOrAccountLinks {
-    float: right;
+
+header .top-bar {
+    margin: 0;
+    padding: 0;
+    width: 100%;
 }
 
-header ul.navbar {
-    clear: both;
+header .top-bar h1 {
+    float: left;
+    display: inline;
 }
 
 header ul {
     list-style-type: none;
-    margin: 0;
-    padding: 0;
 
 }
 
 header ul li {
     display: inline-block;
+}
+
+header .top-bar ul.loginOrAccountLinks {
+    float: right;
+    display: inline;
+    vertical-align: middle;
+}
+
+header ul.navbar {
+    clear: both;
+    margin-left: auto;
+    margin-right: auto;
+    display: table;
+}
+
+header ul.navbar li {
+    width: 250px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+a {
+    text-decoration: none;
 }
 
 /*

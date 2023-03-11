@@ -15,16 +15,18 @@
 
     <body>
         <header>
-            <h1>Gear Store</h1>
+            <div class="top-bar">
+                <h1>Gear Store</h1>
 
-            <ul class="loginOrAccountLinks">
-            {% if user.is_authenticated %}
-                <li><a href="{% url 'gearStore:index' %}">My Account</a></li>
-            {% else %}
-                <li><a href="{% url 'gearStore:login' %}">Login</a></li>
-                <li><a href="{% url 'gearStore:register' %}">Register</a></li>
-            {% endif %}
-            </ul>
+                <ul class="loginOrAccountLinks">
+                {% if user.is_authenticated %}
+                    <li><a href="{% url 'gearStore:index' %}">My Account</a></li>
+                {% else %}
+                    <li><a href="{% url 'gearStore:login' %}">Login</a></li>
+                    <li><a href="{% url 'gearStore:register' %}">Register</a></li>
+                {% endif %}
+                </ul>
+            </div>
 
             <ul class="navbar">
                 <li><a href="{% url 'gearStore:index' %}">Index</a></li>
