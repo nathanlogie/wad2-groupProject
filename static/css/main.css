@@ -61,7 +61,7 @@ a {
 */
 #main-body {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 3fr 1fr;
 }
 
 .body-column {
@@ -70,12 +70,14 @@ a {
 
 }
 
-h1 {
+h3 {
     margin: 0;
+    text-align: center;
 }
 
-#content {
-    padding-top: 40px;
+#page-header {
+    text-align: center;
+    margin: 0;
 }
 
 /*

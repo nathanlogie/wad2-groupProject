@@ -1,15 +1,12 @@
 {% extends 'gearStore/base.html' %}
-
 {% load staticfiles %}
 
+{% block title_block %}
+    Gear
+{% endblock %}
+
 {% block body_block %}
-		<h1>Gear Store</h1> 
-		<div>
-			<strong>{{ boldmessage }}</strong><br /> 
-		</div>
-		<div>
-			<a href="/gearStore/about/">About</a><br />
-			<img src="{% static 'images/test.jpeg' %}" 
-				 alt="Test picture" />
-		</div> 
+    <h1 id="page-header">Gear</h1>
+    <p>Here you can see the types of gear available for borrowing.</p>
+    <!-- TODO add autogen of gear types -->
 {% endblock %}
