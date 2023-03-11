@@ -1,15 +1,13 @@
 {% extends 'gearStore/base.html' %}
-
 {% load staticfiles %}
 
+
+{% block title_block %}
+    Contact Us
+{% endblock %}
+
 {% block body_block %}
-		<h1>Gear Store</h1> 
-		<div>
-			<strong>{{ boldmessage }}</strong><br /> 
-		</div>
-		<div>
-			<a href="/gearStore/about/">About</a><br />
-			<img src="{% static 'images/test.jpeg' %}" 
-				 alt="Test picture" />
-		</div> 
+    <!-- TODO add fake contact details, embed fake insta? -->
+    <h1 id="page-header">Contact Us</h1>
+    <p>Here is how you can contact us if you have any questions:</p>
 {% endblock %}

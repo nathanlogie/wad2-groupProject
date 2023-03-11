@@ -59,6 +59,17 @@ a {
 /*
     Main body styling
 */
+
+html, body {
+    height: 100%;
+}
+
+#content-wrapper {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
 #main-body {
     display: grid;
     grid-template-columns: 1fr 3fr 1fr;
@@ -67,7 +78,6 @@ a {
 .body-column {
     margin-right: 10px;
     margin-left: 10px;
-
 }
 
 h3 {
@@ -80,9 +90,20 @@ h3 {
     margin: 0;
 }
 
+.body-column ul {
+    list-style-type: none;
+}
+
 /*
     Footer styling
 */
 footer p.copyright {
     text-align: center;
+    width: 100%;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
 }
