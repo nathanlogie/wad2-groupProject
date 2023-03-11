@@ -64,12 +64,6 @@ html, body {
     height: 100%;
 }
 
-#content-wrapper {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-}
-
 #main-body {
     display: grid;
     grid-template-columns: 1fr 3fr 1fr;
@@ -106,4 +100,5 @@ footer {
     position: fixed;
     bottom: 0;
     width: 100%;
+    background-color: white;
 }
