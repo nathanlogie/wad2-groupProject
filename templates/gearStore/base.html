@@ -13,6 +13,8 @@
         {% endblock %}
     </title>
 
+    <!-- Photo by <a href="https://unsplash.com/@samferrara?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Samuel Ferrara</a> on <a href="https://unsplash.com/images/nature/mountain?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+   -->
     <body style="background-image: url('{% static 'images/mountains.jpg' %}')">
         <header>
             <div class="top-bar">
@@ -35,32 +37,36 @@
                 <li><a href="{% url 'gearStore:contact' %}">Contact Us</a></li>
             </ul>
         </header>
-        <div id="main-body">
-            <div id="left-sidebar" class="body-column">
-                <h3>Gear Types</h3>
-                <!-- TODO auto generate gear types -->
-                <ul>
-                    <li><a href="">Boots</a></li>
-                    <li><a href="">Crampons</a></li>
-                    <li><a href="">Ice Axes</a></li>
-                </ul>
+        <article>
+            <div id="main-body">
+                <div id="left-sidebar" class="body-column">
+                    <h3>Gear Types</h3>
+                    <!-- TODO auto generate gear types -->
+                    <ul>
+                        <li><a href="">Boots</a></li>
+                        <li><a href="">Crampons</a></li>
+                        <li><a href="">Ice Axes</a></li>
+                    </ul>
 
-            </div>
+                </div>
 
-            <div id="content" class="body-column">
-                {% block body_block %}
-                {% endblock %}
-            </div>
+                <div id="content" class="body-column">
+                    {% block body_block %}
+                    {% endblock %}
+                </div>
 
-            <div id="right-sidebar" class="body-column">
-                <h3>Useful Links</h3>
-                <ul>
-                    <li><a href="">MWIS</a></li>
-                    <li><a href="">AAIS</a></li>
-                </ul>
+                <div id="right-sidebar" class="body-column">
+                    <h3>Useful Links</h3>
+                    <ul>
+                        <li><a href="">MWIS</a></li>
+                        <li><a href="">AAIS</a></li>
+                    </ul>
+                </div>
             </div>
-        </div>
-        <footer>
+            <br>
+            <br>
+        </article>
+        <footer style="background-image: url('{% static 'images/mountains.jpg' %}')">
             <p class="copyright">Copyright Group 10E</p>
         </footer>
     </body>
