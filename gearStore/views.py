@@ -85,3 +85,10 @@ def gear(request):
 @login_required
 def account(request):
     return render(request, 'gearStore/account.html')
+
+@login_required
+def process_logout(request):
+    # Since we know the user is logged in, we can now just log them out.
+    logout(request)
+    # Take the user back to the homepage.
+    return redirect(reverse('gearStore:index'))
