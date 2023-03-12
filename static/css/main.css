@@ -159,6 +159,7 @@ h3 {
 
 .input-box Label {
     float: left;
+    margin-left: 10px;
 }
 
 .input-box ion-icon {
