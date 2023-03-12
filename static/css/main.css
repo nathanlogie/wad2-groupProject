@@ -7,6 +7,20 @@ Imports
     Header styling
 */
 
+.material-symbols-outlined {
+    margin-top: 30px;
+    margin-left: 10px;
+    float: left;
+    color: white;
+    width: 40px;
+    height: 40px;
+    font-variation-settings:
+    'FILL' 0,
+    'wght' 700,
+    'GRAD' 0,
+    'opsz' 48
+}
+
 header {
     padding-bottom: 20px;
     border-bottom: 1px solid white;
@@ -21,7 +35,6 @@ header .top-bar {
 header .top-bar h1 {
     float: left;
     display: inline;
-    padding-left: 20px;
 }
 
 header ul {
@@ -199,6 +212,7 @@ form .submit-button button:hover {
     transition: all 0.5s;
     background-color: grey;
 }
+
 .switch-register-login {
     text-align: center;
 }
