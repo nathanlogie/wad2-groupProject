@@ -1,4 +1,9 @@
 /*
+Imports
+ */
+@import url('https://fonts.googleapis.com/css2?family=Tilt+Neon&display=swap'); /* Header Font */
+
+/*
     Header styling
 */
 
@@ -88,6 +93,57 @@ h3 {
     list-style-type: none;
 }
 
+.center-image {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+}
+
+/*
+    Form Styling
+ */
+.form-container {
+    width: 100%;
+}
+
+.form-value {
+    width: 60%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10%;
+}
+
+.input-box {
+    clear: both;
+}
+
+.input-box Label {
+    float: left;
+}
+
+.input-box ion-icon {
+    float: left;
+}
+
+.input-box input {
+    float: right;
+}
+
+form .submit-button {
+    clear: both;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 20%;
+    margin-top: 10%;
+    margin-bottom: 10%;
+}
+
+.switch-register-login {
+    text-align: center;
+}
 /*
     Footer styling
 */

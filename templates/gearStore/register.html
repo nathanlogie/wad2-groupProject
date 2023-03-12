@@ -6,30 +6,32 @@
 {% endblock %}
 
 {% block body_block %}
+    <h1 id="page-header">Register</h1>
     <div class="form-container">
         <div class="form-value">
             <form action="">
-                <h2>Sign Up</h2>
-                <div class="inputbox">
+                <div class="input-box">
                     <ion-icon name="person-outline"></ion-icon>
-                    <input type="username" required>
                     <Label for="">Username</Label>
+                    <input type="username" required>
                 </div>
-                <div class="inputbox">
+                <div class="input-box">
                     <ion-icon name="mail-outline"></ion-icon>
-                    <input type="email" required>
                     <Label for="">Email</Label>
+                    <input type="email" required>
                 </div>
-                <div class="inputbox">
+                <div class="input-box">
                     <ion-icon name="lock-closed-outline"></ion-icon>
-                    <input type="password" required>
                     <Label for="">Password</Label>
+                    <input type="password" required>
                 </div>
-                <button>Sign Up</button>
-                <div class="register">
-                    <p>Already have an account <a href="{% url 'gearStore:login' %}">Login</a></p>
+                <div class="submit-button">
+                    <button>Sign Up</button>
                 </div>
             </form>
         </div>
+    </div>
+    <div class="switch-register-login">
+        <p>Already have an account? <a href="{% url 'gearStore:login' %}">Login Here!</a></p>
     </div>
 {% endblock %}
