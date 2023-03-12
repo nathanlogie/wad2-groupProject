@@ -9,5 +9,6 @@
 {% block body_block %}
     <!-- TODO show account details, etc -->
     <h1 id="page-header">My Account</h1>
+    <p>Hi, {{user.username}}.</p>
     <a href="{% url 'gearStore:logout' %}">Logout</a>
 {% endblock %}

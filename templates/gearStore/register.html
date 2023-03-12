@@ -9,7 +9,7 @@
     <h1 id="page-header">Register</h1>
     <div class="form-container">
         <div class="form-value">
-            <form action="{% url "gearStore:register" %}" enctype="multipart/form-data">
+            <form method="post" action="{% url "gearStore:register" %}" enctype="multipart/form-data">
                 {% csrf_token %}
                 <div class="input-box">
                     <ion-icon name="person-outline"></ion-icon>
@@ -26,6 +26,9 @@
                     <Label for="">Password</Label>
                     <input type="password" name="password" placeholder="Password1!" required>
                 </div>
+                <br>
+                <br>
+                {{ profile_form.as_p }}
                 <div class="submit-button">
                     <button>Sign Up</button>
                 </div>
