@@ -1,7 +1,7 @@
 /*
 Imports
  */
-@import url('https://fonts.googleapis.com/css2?family=Tilt+Neon&display=swap'); /* Header Font */
+@import url('https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;600&display=swap'); /* Header and text fonts */
 
 /*
     Header styling
@@ -67,6 +67,8 @@ a {
 
 html, body {
     height: 100%;
+    font-family: 'Golos Text', sans-serif;
+    font-weight: 400;
 }
 
 #main-body {
@@ -144,6 +146,12 @@ form .submit-button {
 .switch-register-login {
     text-align: center;
 }
+
+h1, h2, h3 {
+    font-family: 'Golos Text', sans-serif;
+    font-weight: 600;
+}
+
 /*
     Footer styling
 */
