@@ -50,6 +50,9 @@ def register(request):
             print(user_form.errors)
     else:
         user_form = UserForm()
+
+    if registered:
+        return render(request, 'gearStore/login.html')
     
     return render(request, 'gearStore/register.html', context={'user_form':user_form, 'registered':registered})
 
