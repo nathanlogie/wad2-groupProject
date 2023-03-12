@@ -35,30 +35,23 @@ def register(request):
     registered = False
     if request.method == 'POST':
         user_form = UserForm(request.POST)
-        profile_form = UserProfileForm(request.POST)
-        if user_form.is_valid() and profile_form.is_valid():
+        if user_form.is_valid():
             user = user_form.save()
-            print(user.password)
-            print(user.username)
-            print(user.email)
             user.set_password(user.password)
             user.save()
 
-            profile = profile_form.save(commit=False)
+            profile = UserProfile()
             profile.user = user
-            if 'picture' in request.FILES:
-                profile.picture = request.FILES['picture']
             profile.save()
             
             registered = True
         else:
             print("")
-            print(user_form.errors, profile_form.errors)
+            print(user_form.errors)
     else:
         user_form = UserForm()
-        profile_form = UserProfileForm()
     
-    return render(request, 'gearStore/register.html', context={'user_form':user_form, 'profile_form':profile_form, 'registered':registered})
+    return render(request, 'gearStore/register.html', context={'user_form':user_form, 'registered':registered})
 
 def login_page(request):
     if request.method == 'POST':
