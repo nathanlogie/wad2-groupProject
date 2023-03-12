@@ -8,7 +8,8 @@ Imports
 */
 
 header {
-    margin-top: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid white;
 }
 
 header .top-bar {
@@ -48,6 +49,7 @@ header ul.navbar {
     margin-left: auto;
     margin-right: auto;
     display: table;
+    margin-bottom: 0;
 }
 
 header ul.navbar li {
@@ -59,6 +61,12 @@ header ul.navbar li {
 
 a {
     text-decoration: none;
+    font-weight: bold;
+}
+
+a:hover {
+    color: black;
+    transition: color 0.5s;
 }
 
 /*
@@ -72,18 +80,34 @@ html, body {
     background-repeat: no-repeat;
     background-size: 105%;
     background-attachment: fixed;
+    margin: 0;
 }
 
 #main-body {
     display: grid;
     grid-template-columns: 1fr 3fr 1fr;
-    opacity: 0.5;
+    color: white;
+}
+
+header, #left-sidebar, #right-sidebar {
+    background-color: rgba(0,0,0,0.25);
+}
+
+#content {
+     background-color: rgba(0,0,0,0.125);
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+a {
+    color: white;
 }
 
 .body-column {
-    margin-right: 10px;
-    margin-left: 10px;
+    margin: 0;
+    padding-top: 10px;
 }
+
 
 h3 {
     margin: 0;
@@ -154,6 +178,7 @@ form .submit-button {
 h1, h2, h3 {
     font-family: 'Golos Text', sans-serif;
     font-weight: 600;
+    color: white;
 }
 
 /*
@@ -167,6 +192,7 @@ footer p.copyright {
 footer {
     position: fixed;
     bottom: 0;
+    left: 0;
     width: 100%;
-    background-color: white;
+    margin: 0;
 }
