@@ -35,26 +35,26 @@ def register(request):
     registered = False
     if request.method == 'POST':
         user_form = UserForm(request.POST)
-        profile_form = UserProfileForm(request.POST)
-        if user_form.is_valid() and profile_form.is_valid():
+        #profile_form = UserProfileForm(request.POST)
+        if user_form.is_valid(): #and profile_form.is_valid():
             user = user_form.save()
             user.set_password(user.password)
             user.save()
 
-            profile = profile_form.save(commit = False)
+            profile = UserProfile(None)
             profile.user = user
-            if 'picture' in request.FILES:
-                profile.picture = request.FILES['picture']
+            # if 'picture' in request.FILES:
+            #     profile.picture = request.FILES['picture']
             profile.save()
             
             registered = True
         else:
-            print(user_form.errors, profile_form.errors)
+            print(user_form.errors)#, profile_form.errors)
     else:
         user_form = UserForm()
-        profile_form = UserProfileForm()
+        #profile_form = UserProfileForm()
     
-    return render(request, 'gearStore/register.html', context={'user_form':user_form, 'profile_form':profile_form, 'registered':registered})
+    return render(request, 'gearStore/register.html', context={'user_form':user_form, 'registered':registered}) #'profile_form':profile_form
 
 def login_page(request):
     if request.method == 'POST':
@@ -81,3 +81,7 @@ def contact(request):
 
 def gear(request):
     return render(request, 'gearStore/gear.html')
+
+@login_required
+def account(request):
+    return render(request, 'gearStore/account.html')

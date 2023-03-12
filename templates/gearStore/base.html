@@ -25,7 +25,7 @@
 
                 <ul class="loginOrAccountLinks">
                 {% if user.is_authenticated %}
-                    <li><a href="{% url 'gearStore:index' %}">My Account</a></li>
+                    <li><a href="{% url 'gearStore:account' %}">My Account</a></li>
                 {% else %}
                     <li><a href="{% url 'gearStore:login' %}">Login</a></li>
                     <li><a href="{% url 'gearStore:register' %}">Register</a></li>

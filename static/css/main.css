@@ -55,6 +55,7 @@ header .top-bar ul.loginOrAccountLinks {
 header .top-bar ul.loginOrAccountLinks li {
     padding-left: 10px;
     padding-right: 10px;
+    margin-top: 20px;
 }
 
 header ul.navbar {

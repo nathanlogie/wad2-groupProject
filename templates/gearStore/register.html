@@ -10,9 +10,7 @@
     <div class="form-container">
         <div class="form-value">
             <form action="{% url "gearStore:register" %}" enctype="multipart/form-data">
-
                 {% csrf_token %}
-
                 <div class="input-box">
                     <ion-icon name="person-outline"></ion-icon>
                     <Label for="">Username</Label>
