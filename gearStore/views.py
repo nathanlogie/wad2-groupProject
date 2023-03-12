@@ -3,6 +3,8 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
+
+from gearStore.forms import UserForm, UserProfileForm
 from gearStore.models import UserProfile, Category
 #from gearStore.forms import UserForm, UserProfileForm
 
@@ -30,7 +32,6 @@ def view_category(request, category_name_slug):
     return render(request, 'gearStore/view_category.html', context_dict)
 
 def register(request):
-    return render(request, 'gearStore/register.html')
     registered = False
     if request.method == 'POST':
         user_form = UserForm(request.POST)
@@ -55,8 +56,7 @@ def register(request):
     
     return render(request, 'gearStore/register.html', context={'user_form':user_form, 'profile_form':profile_form, 'registered':registered})
 
-def login(request):
-    return render(request, 'gearStore/login.html')
+def login_page(request):
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')

@@ -9,21 +9,24 @@
     <h1 id="page-header">Register</h1>
     <div class="form-container">
         <div class="form-value">
-            <form action="">
+            <form action="{% url "gearStore:register" %}" enctype="multipart/form-data">
+
+                {% csrf_token %}
+
                 <div class="input-box">
                     <ion-icon name="person-outline"></ion-icon>
                     <Label for="">Username</Label>
-                    <input type="username" placeholder="janedoe1" required>
+                    <input type="username" name="username" placeholder="janedoe1" required>
                 </div>
                 <div class="input-box">
                     <ion-icon name="mail-outline"></ion-icon>
                     <Label for="">Email</Label>
-                    <input type="email" placeholder="jane.doe@mail.com" required>
+                    <input type="email" name="email" placeholder="jane.doe@mail.com" required>
                 </div>
                 <div class="input-box">
                     <ion-icon name="lock-closed-outline"></ion-icon>
                     <Label for="">Password</Label>
-                    <input type="password" placeholder="Password1!" required>
+                    <input type="password" name="password" placeholder="Password1!" required>
                 </div>
                 <div class="submit-button">
                     <button>Sign Up</button>

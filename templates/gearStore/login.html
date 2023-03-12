@@ -10,19 +10,20 @@
     <div class="form-text-wrapper">
         <div class="form-container">
             <div class="form-value">
-                <form action="">
+                <form method="post" action="{% url 'gearStore:login' %}">
+                    {% csrf_token %}
                     <div class="input-box">
                         <ion-icon name="person-outline"></ion-icon>
                         <Label for="">Username</Label>
-                        <input type="username" placeholder="janedoe1" required>
+                        <input type="username" name="username" placeholder="janedoe1" required>
                     </div>
                     <div class="input-box">
                         <ion-icon name="lock-closed-outline"></ion-icon>
                         <Label for="">Password</Label>
-                        <input type="password" placeholder="*********" required>
+                        <input type="password" name="password" placeholder="*********" required>
                     </div>
                     <div class="submit-button">
-                        <button>Sign Up</button>
+                        <button>Login</button>
                     </div>
                 </form>
             </div>
