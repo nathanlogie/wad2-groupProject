@@ -94,7 +94,7 @@ header, #left-sidebar, #right-sidebar {
 }
 
 #content {
-     background-color: rgba(0,0,0,0.125);
+     background-color: rgba(0,0,0,0.1875);
     padding-left: 20px;
     padding-right: 20px;
 }
