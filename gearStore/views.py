@@ -39,11 +39,9 @@ def register(request):
             user = user_form.save()
             user.set_password(user.password)
             user.save()
-
             profile = UserProfile()
             profile.user = user
             profile.save()
-            
             registered = True
         else:
             print("")
@@ -79,8 +77,10 @@ def about(request):
 def contact(request):
     return render(request, 'gearStore/contact.html')
 
-def gear(request):
-    return render(request, 'gearStore/gear.html')
+def category_menu(request):
+    context_dict = {}
+    context_dict['categories'] = Category.objects.all()
+    return render(request, 'gearStore/category_menu.html', context_dict)
 
 @login_required
 def account(request):
