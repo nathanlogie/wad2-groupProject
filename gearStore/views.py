@@ -5,7 +5,7 @@ from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 
 from gearStore.forms import UserForm, UserProfileForm
-from gearStore.models import UserProfile, Category
+from gearStore.models import UserProfile, Category, Gear
 #from gearStore.forms import UserForm, UserProfileForm
 
 
@@ -82,9 +82,24 @@ def category_menu(request):
     context_dict['categories'] = Category.objects.all()
     return render(request, 'gearStore/category_menu.html', context_dict)
 
+def view_gear(request, gear_name_slug):
+    context_dict = {}
+    gear = Gear.objects.get(slug = gear_name_slug)
+    context_dict['gear'] = gear
+    current_borrow = None
+    borrows = BorrowedItem.objects.filter(gear = gear)
+    for borrow in borrows:
+        #TO DO - check which borrow is current
+        pass
+    context_dict['borrowed'] = current_borrow
+    return render(request, 'view_gear.html', context_dict)
+
 @login_required
 def account(request):
-    return render(request, 'gearStore/account.html')
+    context_dict = {}
+    user_profile = UserProfile.objects.get(user = request.user)
+    context_dict['user_profile'] = user_profile
+    return render(request, 'gearStore/account.html', context_dict)
 
 @login_required
 def process_logout(request):
