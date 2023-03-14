@@ -32,6 +32,15 @@
             </form>
         </div>
     </div>
+    {% if errors %}
+        <ul class='form-errors'>
+            <li class="error-warning">An error has occurred:</li>
+            {% for error in errors %}
+                <li>{{ error }}</li>
+            {% endfor %}
+        </ul>
+        <br>
+    {% endif %}
     <div class="switch-register-login">
         <p>Already have an account? <a href="{% url 'gearStore:login' %}">Login Here!</a></p>
     </div>

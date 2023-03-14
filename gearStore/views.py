@@ -51,10 +51,17 @@ def register(request):
 
     if registered:
         return render(request, 'gearStore/login.html')
-    
-    return render(request, 'gearStore/register.html', context={'user_form':user_form, 'registered':registered})
+
+    else:
+        errorList = []
+        for error_category in user_form.errors:
+            for error in user_form.errors[error_category]:
+                errorList.append(error)
+
+        return render(request, 'gearStore/register.html', context={'user_form':user_form, 'registered':registered, 'errors':errorList})
 
 def login_page(request):
+    errorList = []
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
@@ -64,10 +71,11 @@ def login_page(request):
                 login(request, user)
                 return redirect(reverse('gearStore:index'))
             else:
-                return HttpResponse("Your Gear Store account is disabled.")
+                errorList.append("Account has been disabled due to inactivity. Please create a new account.")
         else:
             print(f"Invalid login details: {username}, {password}")
-            return HttpResponse("Invalid login details supplied")
+            errorList.append("Invalid combination of user and password.")
+        return render(request, 'gearStore/login.html', context={'errors':errorList})
     else:
         return render(request, 'gearStore/login.html')
 

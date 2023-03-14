@@ -218,6 +218,14 @@ form .submit-button button:hover {
     text-align: center;
 }
 
+.error-warning {
+    font-weight: bold;
+}
+
+.form-errors {
+    text-align: center;
+}
+
 h1, h2, h3 {
     font-family: 'Golos Text', sans-serif;
     font-weight: 600;
