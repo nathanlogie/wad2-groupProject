@@ -1,7 +1,10 @@
+from datetime import timedelta
+
 import django.utils.timezone
 from django.db import models
 from django.contrib.auth.models import User
 from django.template.defaultfilters import slugify
+from django.utils import timezone
 
 
 class Category(models.Model):
@@ -39,6 +42,13 @@ COLOUR_CHOICES = (
     ('black', 'BLACK'),
 )
 
+SIZE_CHOICES = (
+    ('small', 'SMALL'),
+    ('medium', 'MEDIUM'),
+    ('large', 'LARGE'),
+
+)
+
 
 class Gear(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
@@ -47,7 +57,7 @@ class Gear(models.Model):
     dateAdded = models.DateField(auto_now_add=True)
     picture = models.ImageField(default="gear_images/default.png")
     colour = models.CharField(max_length=6, choices=COLOUR_CHOICES, default="GREEN")
-    size = models.CharField(max_length=30)
+    size = models.CharField(max_length=30, choices=SIZE_CHOICES, default="SMALL")
     slug = models.SlugField(unique=True)
 
     class Meta:
@@ -59,3 +69,18 @@ class Gear(models.Model):
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name)
         super(Gear, self).save(*args, **kwargs)
+
+
+def return_date_time():
+    now = timezone.now()
+    return now + timedelta(days=7)
+
+
+class Booking(models.Model):
+    user = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
+    gearItem = models.ForeignKey(Gear, on_delete=models.CASCADE)
+    dateBorrowed = models.DateField(auto_now_add=True)
+    dateToReturn = models.DateField(default=return_date_time)
+
+    def __str__(self):
+        return f"{self.user.user.username} booking of {self.gearItem.name}"
