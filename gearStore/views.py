@@ -97,11 +97,11 @@ def view_gear(request, gear_name_slug):
         gear = Gear.objects.get(slug = gear_name_slug)
         context_dict['gear'] = gear
         current_borrow = False
-        borrows = Booking.objects.filter(gear = gear)
-        for borrow in borrows:
-            if borrow.dateToReturn > timezone.now():
-                current_borrow = True
-                break
+        # borrows = Booking.objects.filter(gear_name_slug == gear.slug)
+        # for borrow in borrows:
+        #     if borrow.dateToReturn > timezone.now() and borrow.gearItem == gear.name:
+        #         current_borrow = True
+        #         break
         context_dict['borrowed'] = current_borrow
     except Gear.DoesNotExist:
         context_dict['gear'] = None

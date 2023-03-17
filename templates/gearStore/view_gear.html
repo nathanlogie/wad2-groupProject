@@ -6,6 +6,11 @@
 {% endblock %}
 
 {% block body_block %}
+    {% if gear %}
+        <p>{{ gear.name }}</p>
+    {% else %}
+
+    {% endif %}
     <h1 id="page-header">Piece of Gear</h1>
     <p></p>
     <!-- TODO add autogen of gear -->
