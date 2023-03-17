@@ -30,7 +30,7 @@ def view_category(request, category_name_slug):
         return redirect(reverse("gearStore:index"))
     context_dict["category"] = category
     context_dict["gear_list"] = Gear.object.filter(category = category)
-    return render(request, 'gearStore/view_category.html', context_dict)
+    return render(request, 'gearStore/category.html', context_dict)
 
 def register(request):
     registered = False
@@ -134,3 +134,16 @@ def add_gear(request):
 @login_required
 def add_category(request):
     return render(request, 'gearStore/add_category.html')
+def view_category(request, category_name_slug):
+    context_dict = {}
+
+    try:
+        category = Category.objects.get(slug=category_name_slug)
+
+        gear = Gear.objects.filter(category=category)
+        context_dict['gear'] = gear
+        context_dict['category'] = category
+    except Category.DoesNotExist:
+        context_dict['category'] = None
+        context_dict['pages'] = None
+    return render(request, 'gearStore/category.html', context=context_dict)
