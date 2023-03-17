@@ -105,7 +105,7 @@ def view_gear(request, gear_name_slug):
         context_dict['borrowed'] = current_borrow
     except Gear.DoesNotExist:
         context_dict['gear'] = None
-    return render(request, 'view_gear.html', context_dict)
+    return render(request, 'gearStore/view_gear.html', context_dict)
 
 @login_required
 def account(request):
