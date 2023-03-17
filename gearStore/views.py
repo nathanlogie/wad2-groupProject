@@ -126,3 +126,11 @@ def process_logout(request):
 
 def admin_error(request):
     return render(request, 'gearStore/admin_error.html')
+
+@login_required
+def add_gear(request):
+    return render(request, 'gearStore/add_gear.html')
+
+@login_required
+def add_category(request):
+    return render(request, 'gearStore/add_category.html')

@@ -13,5 +13,7 @@ urlpatterns = [
     path('gear/<gear_name_slug>', views.view_gear, name='view-gear'),
     path('account/', views.account, name='account'),
     path('logout/', views.process_logout, name='logout'),
-    path('admin-error/', views.admin_error, name='admin-error')
+    path('admin-error/', views.admin_error, name='admin-error'),
+    path('add-gear/', views.add_category, name='add-gear'),
+    path('add-category/', views.add_gear, name='add-category')
 ]
