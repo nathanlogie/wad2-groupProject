@@ -6,7 +6,7 @@ from django.contrib.auth.decorators import login_required
 from django.utils import timezone
 
 from gearStore.forms import UserForm, UserProfileForm
-from gearStore.models import UserProfile, Category, Gear, Booking
+from gearStore.models import UserProfile, Category, Gear, Booking, AdminPassword
 from gearStore.forms import UserForm, UserProfileForm
 
 
@@ -112,6 +112,9 @@ def account(request):
     context_dict = {}
     user_profile = UserProfile.objects.get(user = request.user)
     context_dict['user_profile'] = user_profile
+    if request.method == "Post":
+        password = request.post.get("")
+    
     return render(request, 'gearStore/account.html', context_dict)
 
 @login_required

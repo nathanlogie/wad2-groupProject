@@ -84,3 +84,6 @@ class Booking(models.Model):
 
     def __str__(self):
         return f"{self.user.user.username} booking of {self.gearItem.name}"
+
+class AdminPassword(models.Model):
+    password = models.CharField(max_length=64, default="password123")
