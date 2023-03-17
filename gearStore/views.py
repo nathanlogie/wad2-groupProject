@@ -3,10 +3,11 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
+from django.utils import timezone
 
 from gearStore.forms import UserForm, UserProfileForm
-from gearStore.models import UserProfile, Category, Gear
-#from gearStore.forms import UserForm, UserProfileForm
+from gearStore.models import UserProfile, Category, Gear, Booking
+from gearStore.forms import UserForm, UserProfileForm
 
 
 # Create your views here.
@@ -92,14 +93,18 @@ def category_menu(request):
 
 def view_gear(request, gear_name_slug):
     context_dict = {}
-    gear = Gear.objects.get(slug = gear_name_slug)
-    context_dict['gear'] = gear
-    current_borrow = None
-    borrows = BorrowedItem.objects.filter(gear = gear)
-    for borrow in borrows:
-        #TO DO - check which borrow is current
-        pass
-    context_dict['borrowed'] = current_borrow
+    try:
+        gear = Gear.objects.get(slug = gear_name_slug)
+        context_dict['gear'] = gear
+        current_borrow = False
+        borrows = Booking.objects.filter(gear = gear)
+        for borrow in borrows:
+            if borrow.dateToReturn > timezone.now():
+                current_borrow = True
+                break
+        context_dict['borrowed'] = current_borrow
+    except Gear.DoesNotExist:
+        context_dict['gear'] = None
     return render(request, 'view_gear.html', context_dict)
 
 @login_required
