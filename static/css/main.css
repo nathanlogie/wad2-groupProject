@@ -152,6 +152,39 @@ h3 {
     width: 100%;
 }
 
+.picture {
+    margin-top: 20px;
+    width: 40%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 25px;
+}
+
+.picture-left {
+    margin-top: 20px;
+    width: 60%;
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 25px;
+    float: left;
+}
+
+.alongside-picture {
+    margin-top: 20px;
+    float: right;
+}
+
+.below-picture {
+    padding-top: 20px;
+    clear: both;
+}
+
+.sidebar-link {
+    margin-top: 20px;
+}
+
 /*
     Form Styling
  */

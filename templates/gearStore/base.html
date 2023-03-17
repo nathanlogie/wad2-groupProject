@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 {% load staticfiles %}
+{% load gearstore_template_tags %}
 
     <head>
         <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
@@ -44,11 +45,17 @@
             <div id="main-body">
                 <div id="left-sidebar" class="body-column">
                     <h3>Gear Types</h3>
-                    <!-- TODO auto generate gear types -->
                     <ul>
-                        <li><a href="">Boots</a></li>
-                        <li><a href="">Crampons</a></li>
-                        <li><a href="">Ice Axes</a></li>
+                        {% if categories %}
+                            {% for c in categories %}
+                                <li class="sidebar-link">
+                                    <a href="{% url 'gearStore:view-category' c.slug %}">{{ c.name }}</a>
+                                </li>
+                            {% endfor %}
+                        {% else %}
+                            <li><strong>There are no categories present.</strong></li>
+                        {% endif %}
+
                     </ul>
 
                 </div>
@@ -61,11 +68,11 @@
                 <div id="right-sidebar" class="body-column">
                     <h3>Useful Links</h3>
                     <ul>
-                        <li><a href="https://www.mwis.org.uk/" target="_blank">Mountain Weather Information Service</a></li>
-                        <li><a href="https://www.walkhighlands.co.uk/" target="_blank">Walk Highlands</a></li>
-                        <li><a href="https://www.ukclimbing.com/" target="_blank">UKClimbing</a></li>
-                        <li><a href="https://www.stevenfallon.co.uk/" target="_blank">Steve Fallon</a></li>
-                        <li><a href="https://www.sais.gov.uk/" target="_blank">Scottish Avalanche Information Service</a></li>
+                        <li class="sidebar-link"><a href="https://www.mwis.org.uk/" target="_blank">Mountain Weather Information Service</a></li>
+                        <li class="sidebar-link"><a href="https://www.walkhighlands.co.uk/" target="_blank">Walk Highlands</a></li>
+                        <li class="sidebar-link"><a href="https://www.ukclimbing.com/" target="_blank">UKClimbing</a></li>
+                        <li class="sidebar-link"><a href="https://www.stevenfallon.co.uk/" target="_blank">Steve Fallon</a></li>
+                        <li class="sidebar-link"><a href="https://www.sais.gov.uk/" target="_blank">Scottish Avalanche Information Service</a></li>
                     </ul>
                 </div>
             </div>

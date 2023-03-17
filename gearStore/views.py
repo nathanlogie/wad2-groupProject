@@ -9,20 +9,14 @@ from gearStore.forms import UserForm, UserProfileForm
 from gearStore.models import UserProfile, Category, Gear, Booking, AdminPassword
 from gearStore.forms import UserForm, UserProfileForm
 
+context_dict = {}
+context_dict['categories'] = Category.objects.all()
 
 # Create your views here.
 def index(request):
-    context_dict = {}
-    context_dict['boldmessage'] = 'This is the Bold Message'
-    if request.user.is_authenticated:
-        context_dict["user_profile"] = UserProfile.objects.get(user=request.user)
-    else:
-        context_dict["user_profile"] = None
-    context_dict["categories"] = Category.objects.all()
     return render(request, 'gearStore/index.html', context_dict)
 
 def view_category(request, category_name_slug):
-    context_dict = {}
     try:
         category = Category.objects.get(slug = category_name_slug)
     except Category.DoesNotExist:
@@ -59,7 +53,10 @@ def register(request):
             for error in user_form.errors[error_category]:
                 errorList.append(error)
 
-        return render(request, 'gearStore/register.html', context={'user_form':user_form, 'registered':registered, 'errors':errorList})
+        context_dict['user_form'] = user_form
+        context_dict['registered'] = registered
+        context_dict['errors'] = errorList
+        return render(request, 'gearStore/register.html', context_dict)
 
 def login_page(request):
     errorList = []
@@ -76,23 +73,21 @@ def login_page(request):
         else:
             print(f"Invalid login details: {username}, {password}")
             errorList.append("Invalid combination of user and password.")
-        return render(request, 'gearStore/login.html', context={'errors':errorList})
+        context_dict['errors'] = errorList
+        return render(request, 'gearStore/login.html', context_dict)
     else:
         return render(request, 'gearStore/login.html')
 
 def about(request):
-    return render(request, 'gearStore/about.html')
+    return render(request, 'gearStore/about.html', context_dict)
 
 def contact(request):
-    return render(request, 'gearStore/contact.html')
+    return render(request, 'gearStore/contact.html', context_dict)
 
 def category_menu(request):
-    context_dict = {}
-    context_dict['categories'] = Category.objects.all()
     return render(request, 'gearStore/category_menu.html', context_dict)
 
 def view_gear(request, gear_name_slug):
-    context_dict = {}
     try:
         gear = Gear.objects.get(slug = gear_name_slug)
         context_dict['gear'] = gear
@@ -109,7 +104,6 @@ def view_gear(request, gear_name_slug):
 
 @login_required
 def account(request):
-    context_dict = {}
     user_profile = UserProfile.objects.get(user = request.user)
     context_dict['user_profile'] = user_profile
     if request.method == "Post":
@@ -134,9 +128,8 @@ def add_gear(request):
 @login_required
 def add_category(request):
     return render(request, 'gearStore/add_category.html')
-def view_category(request, category_name_slug):
-    context_dict = {}
 
+def view_category(request, category_name_slug):
     try:
         category = Category.objects.get(slug=category_name_slug)
 
@@ -145,5 +138,5 @@ def view_category(request, category_name_slug):
         context_dict['category'] = category
     except Category.DoesNotExist:
         context_dict['category'] = None
-        context_dict['pages'] = None
+        context_dict['gear'] = None
     return render(request, 'gearStore/category.html', context=context_dict)

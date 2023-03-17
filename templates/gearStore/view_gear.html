@@ -7,11 +7,15 @@
 
 {% block body_block %}
     {% if gear %}
-        <p>{{ gear.name }}</p>
+        <h1 id="page-header">{{ gear.name }}</h1>
+        <img src="/media/{{ gear.picture }}" class="picture">
+        <p>Category: {{ gear.category }}</p>
+        <p>Colour: {{ gear.colour }}</p>
+        <p>Size: {{ gear.size }}</p>
+        <p>Date Added: {{ gear.dateAdded }}</p>
+        <p class="below-picture">Description: {{ gear.description }}</p>
     {% else %}
-
+        <h1 id="page-header">Missing Gear</h1>
+        <p>Error! No such piece of gear exists!</p>
     {% endif %}
-    <h1 id="page-header">Piece of Gear</h1>
-    <p></p>
-    <!-- TODO add autogen of gear -->
 {% endblock %}

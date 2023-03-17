@@ -6,10 +6,10 @@
 {% endblock %}
 
 {% block body_block %}
-    <h1 id="page-header">Gear</h1>
-    <p>Here you can see the types of gear available for borrowing.</p>
     {% if category %}
-        <h1>{{ category.name }}</h1>
+        <h1 id="page-header">{{ category.name }}</h1>
+        <img src="/media/{{ category.picture }}" class="picture">
+        <p>Here you can see pieces of gear available to be borrowed:</p>
         {% if gear %}
             <ul>
                 {% for piece_of_gear in gear %}
