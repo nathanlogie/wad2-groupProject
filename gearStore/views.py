@@ -114,7 +114,7 @@ def account(request):
     context_dict['user_profile'] = user_profile
     if request.method == "Post":
         password = request.post.get("")
-    
+
     return render(request, 'gearStore/account.html', context_dict)
 
 @login_required
@@ -123,3 +123,6 @@ def process_logout(request):
     logout(request)
     # Take the user back to the homepage.
     return redirect(reverse('gearStore:index'))
+
+def admin_error(request):
+    return render(request, 'gearStore/admin_error.html')

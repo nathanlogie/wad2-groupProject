@@ -12,5 +12,6 @@ urlpatterns = [
     path('find-gear/', views.category_menu, name='find-gear'),
     path('gear/<gear_name_slug>', views.view_gear, name='view_gear'),
     path('account/', views.account, name='account'),
-    path('logout/', views.process_logout, name='logout')
+    path('logout/', views.process_logout, name='logout'),
+    path('admin-error/', views.admin_error, name='admin-error')
 ]
