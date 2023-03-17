@@ -1,10 +1,25 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'gearStore/base.html' %}
+{% load staticfiles %}
 
-</body>
-</html>
+{% block title_block %}
+    Gear
+{% endblock %}
+
+{% block body_block %}
+    <h1 id="page-header">Gear</h1>
+    <p>Here you can see the types of gear available for borrowing.</p>
+    {% if category %}
+        <h1>{{ category.name }}</h1>
+        {% if gear %}
+            <ul>
+                {% for piece_of_gear in gear %}
+                    <li><a href="{% url 'gearStore:index' %}}">{{ piece_of_gear.name }}</a></li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <strong>No pages currently in category.</strong>
+        {% endif %}
+    {% else %}
+        The specified category does not exist.
+    {% endif %}
+{% endblock %}

@@ -8,21 +8,12 @@
 {% block body_block %}
     <h1 id="page-header">Gear</h1>
     <p>Here you can see the types of gear available for borrowing.</p>
-    <!-- TODO add autogen of gear types -->
     <ul>
     {% if categories %}
         {% for c in categories %}
-            {% if c == current_category %}
-            <li>
-            <strong>
-                <a href="{% url 'gearStore:view-category' c.slug %}">{{ c.name }}</a>
-            </strong>
-            </li>
-            {% else %}
             <li>
                 <a href="{% url 'gearStore:view-category' c.slug %}">{{ c.name }}</a>
             </li>
-            {% endif %}
         {% endfor %}
     {% else %}
         <li><strong>There are no categories present.</strong></li>
