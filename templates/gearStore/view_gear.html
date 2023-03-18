@@ -8,12 +8,18 @@
 {% block body_block %}
     {% if gear %}
         <h1 id="page-header">{{ gear.name }}</h1>
-        <img src="/media/{{ gear.picture }}" class="picture">
-        <p><a href="{% url 'gearStore:view-category' category.slug %}">Category: {{ gear.category }}</a></p>
-        <p>Colour: {{ gear.colour }}</p>
-        <p>Size: {{ gear.size }}</p>
-        <p>Date Added: {{ gear.dateAdded }}</p>
-        <p class="below-picture">Description: {{ gear.description }}</p>
+        <div class="gear-view-contents">
+            <div class="left-image">
+                <img src="/media/{{ gear.picture }}">
+            </div>
+            <div class="right-text">
+                <p><a href="{% url 'gearStore:view-category' category.slug %}">Category: {{ gear.category }}</a></p>
+                <p>Colour: {{ gear.colour }}</p>
+                <p>Size: {{ gear.size }}</p>
+                <p>Date Added: {{ gear.dateAdded }}</p>
+                <p class="below-picture">Description: {{ gear.description }}</p>
+            </div>
+        </div>
         {% if borrowed %}
             <p>You cannot currently borrow this item - it has already been borrowed!</p>
         {% else %}
