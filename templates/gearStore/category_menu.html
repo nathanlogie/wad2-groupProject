@@ -8,15 +8,14 @@
 {% block body_block %}
     <h1 id="page-header">Gear</h1>
     <p>Here you can see the types of gear available for borrowing.</p>
-    <ul>
     {% if categories %}
         {% for c in categories %}
-            <li>
+            <div class="category-menu-card" style="background-image: url('/media/{{ c.picture }}')">
                 <a href="{% url 'gearStore:view-category' c.slug %}">{{ c.name }}</a>
-            </li>
+                <p>{{ c.picture }}</p>
+            </div>
         {% endfor %}
     {% else %}
-        <li><strong>There are no categories present.</strong></li>
+        <p><strong>There are no categories present.</strong><p>
     {% endif %}
-    </ul>
 {% endblock %}

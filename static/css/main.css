@@ -91,7 +91,7 @@ html, body {
     font-family: 'Golos Text', sans-serif;
     font-weight: 400;
     background-repeat: no-repeat;
-    background-size: 105%;
+    background-size: cover;
     background-attachment: fixed;
     margin: 0;
 }
@@ -187,6 +187,13 @@ h3 {
 
 p {
     text-align: center;
+}
+
+.category-menu-card {
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 200px;
+    height: 200px;
 }
 
 /*
