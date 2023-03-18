@@ -189,13 +189,14 @@ p {
     text-align: center;
 }
 
-.category-menu-container {
+.menu-container {
     display: inline-flex;
     flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: space-evenly;
+    width: 100%;
 }
 
-.category-menu-card {
+.menu-card {
     flex: none;
     text-align: center;
     display: flex;
@@ -209,15 +210,12 @@ p {
     border-radius: 20px;
 }
 
-.category-menu-card:hover {
+.menu-card:hover {
     background-color: rgba(0,0,0,0);
     transition: background-color 0.5s;
 }
 
-.category-menu-card p {
-}
-
-.category-menu-card-link {
+.menu-card-link {
     background-repeat: no-repeat;
     background-size: cover;
     width: 200px;

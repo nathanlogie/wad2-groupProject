@@ -8,14 +8,13 @@
 {% block body_block %}
     {% if category %}
         <h1 id="page-header">{{ category.name }}</h1>
-        <img src="/media/{{ category.picture }}" class="picture">
         <p>Here you can see pieces of gear available to be borrowed:</p>
         {% if gear %}
-            <ul>
+            <div class="menu-container">
                 {% for piece_of_gear in gear %}
-                    <li><p><a href="{% url 'gearStore:view-gear' piece_of_gear.slug %}">{{ piece_of_gear.name }}</a></p></li>
+                    <a href="{% url 'gearStore:view-gear' piece_of_gear.slug %}" class="menu-card-link" style="background-image: url('/media/{{ piece_of_gear.picture }}')"><div class="menu-card"><p>{{ piece_of_gear.name }}</p></div></a>
                 {% endfor %}
-            </ul>
+            </div>
         {% else %}
             <strong>No pages currently in category.</strong>
         {% endif %}

@@ -9,10 +9,10 @@
     <h1 id="page-header">Gear</h1>
     <p>Here you can see the types of gear available for borrowing.</p>
     {% if categories %}
-        <div class="category-menu-container">
-        {% for c in categories %}
-            <a href="{% url 'gearStore:view-category' c.slug %}" class="category-menu-card-link" style="background-image: url('/media/{{ c.picture }}')"><div class="category-menu-card"><p>{{ c.name }}</p></div></a>
-        {% endfor %}
+        <div class="menu-container">
+            {% for c in categories %}
+                <a href="{% url 'gearStore:view-category' c.slug %}" class="menu-card-link" style="background-image: url('/media/{{ c.picture }}')"><div class="menu-card"><p>{{ c.name }}</p></div></a>
+            {% endfor %}
         </div>
     {% else %}
         <p><strong>There are no categories present.</strong><p>
