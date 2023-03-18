@@ -13,7 +13,7 @@
         {% if gear %}
             <ul>
                 {% for piece_of_gear in gear %}
-                    <li><a href="{% url 'gearStore:view-gear' piece_of_gear.slug %}">{{ piece_of_gear.name }}</a></li>
+                    <li><p><a href="{% url 'gearStore:view-gear' piece_of_gear.slug %}">{{ piece_of_gear.name }}</a></p></li>
                 {% endfor %}
             </ul>
         {% else %}
