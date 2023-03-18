@@ -48,9 +48,15 @@
                     <ul>
                         {% if categories %}
                             {% for c in categories %}
-                                <li class="sidebar-link">
-                                    <a href="{% url 'gearStore:view-category' c.slug %}">{{ c.name }}</a>
-                                </li>
+                                {% if c == category %}
+                                    <li class="sidebar-link">
+                                        <a href="{% url 'gearStore:view-category' c.slug %}">>> {{ c.name }}</a>
+                                    </li>
+                                {% else %}
+                                    <li class="sidebar-link">
+                                        <a href="{% url 'gearStore:view-category' c.slug %}">{{ c.name }}</a>
+                                    </li>
+                                {% endif %}
                             {% endfor %}
                         {% else %}
                             <li><strong>There are no categories present.</strong></li>

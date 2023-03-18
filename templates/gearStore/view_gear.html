@@ -9,11 +9,16 @@
     {% if gear %}
         <h1 id="page-header">{{ gear.name }}</h1>
         <img src="/media/{{ gear.picture }}" class="picture">
-        <p>Category: {{ gear.category }}</p>
+        <p><a href="{% url 'gearStore:view-category' category.slug %}">Category: {{ gear.category }}</a></p>
         <p>Colour: {{ gear.colour }}</p>
         <p>Size: {{ gear.size }}</p>
         <p>Date Added: {{ gear.dateAdded }}</p>
         <p class="below-picture">Description: {{ gear.description }}</p>
+        {% if borrowed %}
+            <p>You cannot currently borrow this item - it has already been borrowed!</p>
+        {% else %}
+            <p>Not borrowed</p>
+        {% endif %}
     {% else %}
         <h1 id="page-header">Missing Gear</h1>
         <p>Error! No such piece of gear exists!</p>

@@ -1,3 +1,5 @@
+from datetime import *
+
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
@@ -14,6 +16,7 @@ context_dict['categories'] = Category.objects.all()
 
 # Create your views here.
 def index(request):
+    context_dict['category'] = None
     return render(request, 'gearStore/index.html', context_dict)
 
 def view_category(request, category_name_slug):
@@ -27,6 +30,7 @@ def view_category(request, category_name_slug):
     return render(request, 'gearStore/category.html', context_dict)
 
 def register(request):
+    context_dict['category'] = None
     registered = False
     if request.method == 'POST':
         user_form = UserForm(request.POST)
@@ -59,6 +63,7 @@ def register(request):
         return render(request, 'gearStore/register.html', context_dict)
 
 def login_page(request):
+    context_dict['category'] = None
     errorList = []
     if request.method == 'POST':
         username = request.POST.get('username')
@@ -79,31 +84,43 @@ def login_page(request):
         return render(request, 'gearStore/login.html')
 
 def about(request):
+    context_dict['category'] = None
     return render(request, 'gearStore/about.html', context_dict)
 
 def contact(request):
+    context_dict['category'] = None
     return render(request, 'gearStore/contact.html', context_dict)
 
 def category_menu(request):
+    context_dict['category'] = None
     return render(request, 'gearStore/category_menu.html', context_dict)
 
 def view_gear(request, gear_name_slug):
     try:
         gear = Gear.objects.get(slug = gear_name_slug)
         context_dict['gear'] = gear
+        # find if the gear is currently on loan
         current_borrow = False
-        # borrows = Booking.objects.filter(gear_name_slug == gear.slug)
-        # for borrow in borrows:
-        #     if borrow.dateToReturn > timezone.now() and borrow.gearItem == gear.name:
-        #         current_borrow = True
-        #         break
+        borrows = Booking.objects.filter(gearItem = gear)
+        for borrow in borrows:
+            if borrow.dateToReturn > datetime.now().date() and borrow.gearItem == gear:
+                current_borrow = True
+                break
         context_dict['borrowed'] = current_borrow
+
+        # find the gear's category
+        try:
+            category = Category.objects.get(name=gear.category)
+            context_dict['category'] = category
+        except Category.DoesNotExist:
+            context_dict['category'] = None
     except Gear.DoesNotExist:
         context_dict['gear'] = None
     return render(request, 'gearStore/view_gear.html', context_dict)
 
 @login_required
 def account(request):
+    context_dict['category'] = None
     user_profile = UserProfile.objects.get(user = request.user)
     context_dict['user_profile'] = user_profile
     if request.method == "Post":
@@ -113,12 +130,12 @@ def account(request):
 
 @login_required
 def process_logout(request):
-    # Since we know the user is logged in, we can now just log them out.
+    context_dict['category'] = None
     logout(request)
-    # Take the user back to the homepage.
     return redirect(reverse('gearStore:index'))
 
 def admin_error(request):
+    context_dict['category'] = None
     return render(request, 'gearStore/admin_error.html')
 
 @login_required
@@ -127,6 +144,7 @@ def add_gear(request):
 
 @login_required
 def add_category(request):
+    context_dict['category'] = None
     return render(request, 'gearStore/add_category.html')
 
 def view_category(request, category_name_slug):
