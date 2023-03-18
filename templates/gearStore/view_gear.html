@@ -17,8 +17,26 @@
         {% if borrowed %}
             <p>You cannot currently borrow this item - it has already been borrowed!</p>
         {% else %}
-            <p>Not borrowed</p>
+            <p>Not currently borrowed</p>
+            {% if user.is_authenticated %}
+                <div class="form-container">
+                    <div class="form-value">
+                        <form method="post" action="{% url "gearStore:view-gear" gear.slug %}" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="submit-button">
+                                <button>Borrow</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            {% else %}
+                <p>Please log in to borrow this item!</p>
+                <p><a href="{% url 'gearStore:login' %}">Login</a></p>
+            {% endif %}
         {% endif %}
+        <br>
+        <br>
+        <br>
     {% else %}
         <h1 id="page-header">Missing Gear</h1>
         <p>Error! No such piece of gear exists!</p>
