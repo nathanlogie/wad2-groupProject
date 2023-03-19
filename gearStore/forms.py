@@ -1,4 +1,3 @@
-import django.utils.timezone
 from django import forms
 from django.contrib.auth.models import User
 
