@@ -177,7 +177,7 @@ def view_category(request, category_name_slug):
 
 @login_required
 def add_category(request):
-    form = CategoryForm
+    form = CategoryForm()
     if request.method == 'POST':
         form = CategoryForm(request.POST)
 
@@ -187,3 +187,8 @@ def add_category(request):
         else:
             print(form.errors)
     return render(request, 'gearStore/add_category.html', {'form': form})
+
+
+@login_required
+def add_gear(request):
+    return render(request, 'gearStore/add_gear')

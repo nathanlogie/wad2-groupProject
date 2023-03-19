@@ -23,10 +23,10 @@ class CategoryForm(forms.ModelForm):
     name = forms.CharField(max_length=128,
                            help_text="Please the enter the category name.")
     description = forms.CharField(max_length=128)
-    dateAdded = forms.DateField(widget=forms.HiddenInput(), initial=django.utils.timezone.now())
-    picture = forms.ImageField()
+    dateAdded = forms.DateField(widget=forms.HiddenInput(), required=False)
+    picture = forms.ImageField(required=False)
     slug = forms.SlugField(widget=forms.HiddenInput(), required=False)
 
     class Meta:
         model = Category
-        fields = ('name',)
+        fields = ('name', 'description', 'picture')
