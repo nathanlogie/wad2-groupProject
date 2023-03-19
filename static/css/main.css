@@ -60,14 +60,12 @@ header .top-bar ul.loginOrAccountLinks li {
 
 header ul.navbar {
     clear: both;
-    margin-left: auto;
-    margin-right: auto;
-    display: table;
+    display: flex;
+    justify-content: space-evenly;
     margin-bottom: 0;
 }
 
 header ul.navbar li {
-    width: 250px;
     margin-left: auto;
     margin-right: auto;
     text-align: center;
@@ -349,4 +347,46 @@ footer {
     background-repeat: no-repeat;
     background-size: 105%;
     background-attachment: fixed;
+}
+
+@media only screen and (max-width: 800px) {
+    #main-body {
+        display: block;
+        grid-template-columns: none;
+        color: white;
+        height: 90%;
+    }
+
+    #left-sidebar ul {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+        margin: 0;
+    }
+
+    #right-sidebar ul {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+        margin: 0;
+    }
+
+    #content p {
+        margin: 0;
+        padding:10px;
+    }
+
+    li.sidebar-link {
+        margin: 10px;
+    }
+
+    footer {
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-attachment: fixed;
+    }
+
+    .body-column {
+        height: auto;
+    }
 }
