@@ -181,10 +181,10 @@ def add_category(request):
 
         if form.is_valid():
             form.save(commit=True)
-            return redirect('/gearstore')
+            return redirect('/gear-store/')
         else:
             print(form.errors)
-    return render(request, 'gearStore/add_category.html', {'form': form})
+    return render(request, 'gearStore/add_categoryTEMP.html', {'form': form})
 
 
 @login_required
@@ -195,7 +195,7 @@ def add_gear(request, category_name_slug):
         category = None
 
     if category is None:
-        return redirect('/gearstore/')
+        return redirect('/gear-store/')
 
     form = GearForm()
 

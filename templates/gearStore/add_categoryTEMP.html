@@ -1,0 +1,28 @@
+{% extends 'gearStore/base.html' %}
+<!DOCTYPE html>
+<html lang = 'en'>
+{% block title_block %}
+Add category
+{% endblock %}
+{% block body_block %}
+<body>
+<h1>Add a category</h1>
+<strong>{{ errors }}</strong>
+<div>
+    <form id="page_form" method="post" action="{% url 'gearStore:add-category' %}">
+        {% csrf_token %}
+        {% for hidden in form.hidden_fields %}
+            {{ hidden }}
+        {% endfor %}
+        {% for field in form.visible_fields %}
+            {{ field.errors }}
+            {{ field.help_text }}
+            {{ field }}
+            <br>
+        {% endfor %}
+        <input type="submit" name="submit" value="Add Category"/>
+    </form>
+</div>
+</body>
+{% endblock %}
+</html>
