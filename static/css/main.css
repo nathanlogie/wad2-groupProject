@@ -91,7 +91,7 @@ html, body {
     font-family: 'Golos Text', sans-serif;
     font-weight: 400;
     background-repeat: no-repeat;
-    background-size: 105%;
+    background-size: cover;
     background-attachment: fixed;
     margin: 0;
 }
@@ -150,6 +150,104 @@ h3 {
     margin-left: auto;
     margin-right: auto;
     width: 100%;
+}
+
+.picture {
+    margin-top: 20px;
+    width: 40%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 25px;
+}
+
+.picture-left {
+    margin-top: 20px;
+    width: 60%;
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 25px;
+    float: left;
+}
+
+.alongside-picture {
+    margin-top: 20px;
+    float: right;
+}
+
+.below-picture {
+    padding-top: 20px;
+    clear: both;
+}
+
+.sidebar-link {
+    margin-top: 20px;
+}
+
+p {
+    text-align: center;
+}
+
+.menu-container {
+    display: inline-flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    width: 100%;
+}
+
+.menu-card {
+    flex: none;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-direction: column;
+    justify-content: center;
+    background-color: rgba(0,0,0,0.5);
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+}
+
+.menu-card:hover {
+    background-color: rgba(0,0,0,0);
+    transition: background-color 0.5s;
+}
+
+.menu-card-link {
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 200px;
+    height: 200px;
+    border-radius: 20px;
+    margin: 10px;
+}
+
+.gear-view-contents {
+    display: inline-flex;
+    margin-top: 10px;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.left-image img {
+    width: 200px;
+    border-radius: 20px;
+}
+
+.left-image {
+    margin: 10px;
+}
+
+.right-text {
+    flex-grow: 2;
+    margin: 10px;
+}
+
+.right-text p {
+    text-align: left;
 }
 
 /*

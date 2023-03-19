@@ -21,7 +21,7 @@ from gearStore import views
 
 urlpatterns = [
   path('', views.index, name='index'),
-  path('gearStore/', include('gearStore.urls')),
+  path('gear-store/', include('gearStore.urls')),
   # The above line means any urls starting with gearStore/ are handled by gearStore
   path('admin/', admin.site.urls),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

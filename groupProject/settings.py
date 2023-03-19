@@ -136,3 +136,7 @@ PASSWORD_HASHERS = [
     'django.contrib.auth.hashers.PBKDF2PasswordHasher',
     'django.contrib.auth.hashers.PBKDF2SHA1PasswordHasher',
 ]
+
+# redirect in login required
+LOGIN_REDIRECT_URL = "/gear-store/profile/"
+LOGIN_URL = "/gear-store/login/"

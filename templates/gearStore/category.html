@@ -1,0 +1,24 @@
+{% extends 'gearStore/base.html' %}
+{% load staticfiles %}
+
+{% block title_block %}
+    Gear
+{% endblock %}
+
+{% block body_block %}
+    {% if category %}
+        <h1 id="page-header">{{ category.name }}</h1>
+        <p>Here you can see pieces of gear available to be borrowed:</p>
+        {% if gear %}
+            <div class="menu-container">
+                {% for piece_of_gear in gear %}
+                    <a href="{% url 'gearStore:view-gear' piece_of_gear.slug %}" class="menu-card-link" style="background-image: url('/media/{{ piece_of_gear.picture }}')"><div class="menu-card"><p>{{ piece_of_gear.name }}</p></div></a>
+                {% endfor %}
+            </div>
+        {% else %}
+            <strong>No pages currently in category.</strong>
+        {% endif %}
+    {% else %}
+        The specified category does not exist.
+    {% endif %}
+{% endblock %}
