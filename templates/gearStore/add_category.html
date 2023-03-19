@@ -9,8 +9,12 @@
     <h1 id="page-header">Add a Category!</h1>
     <div class="form-container">
         <div class="form-value">
-            <form id = 'category_form' method="post" action="{% url "gearStore:add-category" %}" enctype="multipart/form-data">
+            <form id='category_form' method="post" action="{% url "gearStore:add-category" %}"
+                  enctype="multipart/form-data">
                 {% csrf_token %}
+                {% for hidden in form.hidden_fields %}
+                    {{ hidden }}
+                {% endfor %}
                 <div class="input-box">
                     <ion-icon name="person-outline"></ion-icon>
                     <Label for="">Category Name</Label>

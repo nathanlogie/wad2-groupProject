@@ -8,7 +8,7 @@ from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from django.utils import timezone
 
-from gearStore.forms import UserForm, UserProfileForm, CategoryForm
+from gearStore.forms import UserForm, UserProfileForm, CategoryForm, GearForm
 from gearStore.models import UserProfile, Category, Gear, Booking, AdminPassword
 from gearStore.forms import UserForm, UserProfileForm
 
@@ -190,5 +190,28 @@ def add_category(request):
 
 
 @login_required
-def add_gear(request):
-    return render(request, 'gearStore/add_gear')
+def add_gear(request, category_name_slug):
+    try:
+        category = Category.objects.get(slug=category_name_slug)
+    except Category.DoesNotExist:
+        category = None
+
+    if category is None:
+        return redirect('/gearstore/')
+
+    form = GearForm()
+
+    if request.method == 'POST':
+        form = GearForm(request.POST)
+
+        if form.is_valid():
+            if category:
+                gear = form.save(commit=False)
+                gear.category = category
+                gear.save()
+                return redirect(reverse('gearStore:view-category', kwargs={'category_name_slug': category_name_slug}))
+        else:
+            print(form.errors)
+
+    context_dict = {'form': form, 'category': category}
+    return render(request, 'gearStore/add_gear.html', context=context_dict)
