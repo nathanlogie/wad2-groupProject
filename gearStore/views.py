@@ -175,17 +175,18 @@ def view_category(request, category_name_slug):
 
 @login_required
 def add_category(request):
-    form = CategoryForm()
+    form = None
     if request.method == 'POST':
         form = CategoryForm(request.POST)
 
         if form.is_valid():
-            form.save(commit=True)
-            return redirect('/gear-store/')
+            form.save()
+            return render(request, 'gearStore/index.html', context_dict)
         else:
             print(form.errors)
 
-    return render(request, 'gearStore/add_categoryTEMP.html', {'form': form})
+    context_dict['form'] = form
+    return render(request, 'gearStore/add_category.html', context_dict)
 
 
 @login_required
