@@ -82,6 +82,11 @@ class Booking(models.Model):
 
     def __str__(self):
         return f"{self.user.user.username} booking of {self.gearItem.name}"
+    
+    def is_current(self):
+        if self.dateToReturn >= timezone.now().date():
+            return True
+        return False
 
 
 class AdminPassword(models.Model):

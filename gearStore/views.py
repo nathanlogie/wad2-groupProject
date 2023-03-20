@@ -6,9 +6,8 @@ from django.contrib.auth import authenticate, login, logout
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 
-from gearStore.forms import UserForm, UserProfileForm, CategoryForm, GearForm
+from gearStore.forms import UserForm, UserProfileForm, CategoryForm, GearForm, AdminForm
 from gearStore.models import UserProfile, Category, Gear, Booking, AdminPassword
-from gearStore.forms import UserForm, UserProfileForm
 
 context_dict = {}
 context_dict['categories'] = Category.objects.all()
@@ -120,7 +119,7 @@ def view_gear(request, gear_name_slug):
         current_borrow = False
         borrows = Booking.objects.filter(gearItem=gear)
         for borrow in borrows:
-            if borrow.dateToReturn > datetime.now().date() and borrow.gearItem == gear:
+            if borrow.is_current():
                 current_borrow = True
                 break
         context_dict['borrowed'] = current_borrow
@@ -133,7 +132,6 @@ def view_gear(request, gear_name_slug):
             context_dict['category'] = None
     except Gear.DoesNotExist:
         context_dict['gear'] = None
-
     return render(request, 'gearStore/view_gear.html', context_dict)
 
 
@@ -142,11 +140,26 @@ def account(request):
     context_dict['category'] = None
     user_profile = UserProfile.objects.get(user=request.user)
     context_dict['user_profile'] = user_profile
+    passwords = AdminPassword.objects.all()
+    if not passwords:
+        user_profile.adminStatus = True
+    form = AdminForm()
     if request.method == "Post":
-        password = request.post.get("")
-
+        form = AdminForm(request.post)
+        if form.is_valid():
+            if not passwords:
+                password = form.save(commit=True)
+            elif user_profile.adminStatus:
+                passwords[0].password = form.password
+            else:
+                if passwords[0].password == form.password:
+                    user_profile.adminStatus = True
+                    user_profile.save()
+    context_dict['password_form'] = form
+    user_bookings = Booking.objects.filter(user = user_profile)
+    for booking in user_bookings:
+        print(booking)
     return render(request, 'gearStore/account.html', context_dict)
-
 
 @login_required
 def process_logout(request):

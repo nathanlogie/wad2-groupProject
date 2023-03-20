@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
 
-from gearStore.models import UserProfile, Category, COLOUR_CHOICES, SIZE_CHOICES, Gear
+from gearStore.models import UserProfile, Category, COLOUR_CHOICES, SIZE_CHOICES, Gear, AdminPassword
 
 
 class UserForm(forms.ModelForm):
@@ -45,3 +45,10 @@ class GearForm(forms.ModelForm):
     class Meta:
         model = Gear
         exclude = ('category',)
+
+class AdminForm(forms.ModelForm):
+    password = forms.CharField(widget=forms.PasswordInput)
+    
+    class Meta:
+        model = AdminPassword
+        fields = ('password',)
