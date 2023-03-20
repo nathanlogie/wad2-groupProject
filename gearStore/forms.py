@@ -24,7 +24,7 @@ class CategoryForm(forms.ModelForm):
                            )
     description = forms.CharField(max_length=128)
     dateAdded = forms.DateField(widget=forms.HiddenInput(), required=False)
-    picture = forms.ImageField(required=False)
+    picture = forms.ImageField(required=True)
     slug = forms.SlugField(widget=forms.HiddenInput(), required=False)
 
     class Meta:

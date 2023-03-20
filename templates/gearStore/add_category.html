@@ -9,8 +9,7 @@
     <h1 id="page-header">Add a Category!</h1>
     <div class="form-container">
         <div class="form-value">
-            <form id='category_form' method="post" action="{% url "gearStore:add-category" %}"
-                  enctype="multipart/form-data">
+            <form enctype="multipart/form-data" id='category_form' method="post" action="{% url "gearStore:add-category" %}">
                 {% csrf_token %}
                 {% for hidden in form.hidden_fields %}
                     {{ hidden }}
@@ -18,16 +17,16 @@
                 <div class="input-box">
                     <ion-icon name="person-outline"></ion-icon>
                     <Label for="">Category Name</Label>
-                    <input type="text" name="categoryName" placeholder="category name" required>
+                    <input type="text" name="name" placeholder="category name" required>
                 </div>
                 <div class="input-box">
                     <ion-icon name="mail-outline"></ion-icon>
                     <Label for="">Description</Label>
-                    <input type="text" name="categoryDescription" placeholder="description" required>
+                    <input type="text" name="description" placeholder="description" required>
                 </div>
                 <div class="input-box">
                     <Label for="">Category Image</Label>
-                    <input type="file" name="categoryImage" accept="image/png, image/jpeg">
+                    <input type="file" name="picture" accept="image/*" required>
                 </div>
                 <div class="submit-button">
                     <button>Add Category!</button>

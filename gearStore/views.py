@@ -9,17 +9,17 @@ from django.contrib.auth.decorators import login_required
 from gearStore.forms import UserForm, UserProfileForm, CategoryForm, GearForm, AdminForm
 from gearStore.models import UserProfile, Category, Gear, Booking, AdminPassword
 
-context_dict = {}
-context_dict['categories'] = Category.objects.all()
-
-
 # Create your views here.
 def index(request):
+    context_dict = {'categories': Category.objects.all()}
+    context_dict['categories'] = Category.objects.all()
     context_dict['category'] = None
     return render(request, 'gearStore/index.html', context_dict)
 
 
 def view_category(request, category_name_slug):
+    context_dict = {'categories': Category.objects.all()}
+    context_dict['categories'] = Category.objects.all()
     try:
         category = Category.objects.get(slug=category_name_slug)
     except Category.DoesNotExist:
@@ -31,6 +31,7 @@ def view_category(request, category_name_slug):
 
 
 def register(request):
+    context_dict = {'categories': Category.objects.all()}
     context_dict['category'] = None
     registered = False
     if request.method == 'POST':
@@ -65,6 +66,7 @@ def register(request):
 
 
 def login_page(request):
+    context_dict = {'categories': Category.objects.all()}
     context_dict['category'] = None
     errorList = []
     if request.method == 'POST':
@@ -87,21 +89,25 @@ def login_page(request):
 
 
 def about(request):
+    context_dict = {'categories': Category.objects.all()}
     context_dict['category'] = None
     return render(request, 'gearStore/about.html', context_dict)
 
 
 def contact(request):
+    context_dict = {'categories': Category.objects.all()}
     context_dict['category'] = None
     return render(request, 'gearStore/contact.html', context_dict)
 
 
 def category_menu(request):
+    context_dict = {'categories': Category.objects.all()}
     context_dict['category'] = None
     return render(request, 'gearStore/category_menu.html', context_dict)
 
 
 def view_gear(request, gear_name_slug):
+    context_dict = {'categories': Category.objects.all()}
     try:
         gear = Gear.objects.get(slug=gear_name_slug)
         context_dict['gear'] = gear
@@ -137,6 +143,7 @@ def view_gear(request, gear_name_slug):
 
 @login_required
 def account(request):
+    context_dict = {'categories': Category.objects.all()}
     context_dict['category'] = None
     user_profile = UserProfile.objects.get(user=request.user)
     context_dict['user_profile'] = user_profile
@@ -163,17 +170,20 @@ def account(request):
 
 @login_required
 def process_logout(request):
+    context_dict = {'categories': Category.objects.all()}
     context_dict['category'] = None
     logout(request)
     return redirect(reverse('gearStore:index'))
 
 
 def admin_error(request):
+    context_dict = {'categories': Category.objects.all()}
     context_dict['category'] = None
     return render(request, 'gearStore/admin_error.html', context=context_dict)
 
 
 def view_category(request, category_name_slug):
+    context_dict = {'categories': Category.objects.all()}
     try:
         category = Category.objects.get(slug=category_name_slug)
 
@@ -188,21 +198,23 @@ def view_category(request, category_name_slug):
 
 @login_required
 def add_category(request):
-    form = CategoryForm()
+    context_dict = {'categories': Category.objects.all()}
+    form = None
     if request.method == 'POST':
-        form = CategoryForm(request.POST)
+        form = CategoryForm(request.POST, request.FILES)
 
         if form.is_valid():
-            form.save(commit=True)
+            form.save()
             return redirect('/gear-store/')
         else:
             print(form.errors)
 
-    return render(request, 'gearStore/add_categoryTEMP.html', {'form': form})
+    return render(request, 'gearStore/add_category.html', {'form': form, 'categories': Category.objects.all()})
 
 
 @login_required
 def add_gear(request, category_name_slug):
+    context_dict = {'categories': Category.objects.all()}
     try:
         category = Category.objects.get(slug=category_name_slug)
     except Category.DoesNotExist:
@@ -210,8 +222,6 @@ def add_gear(request, category_name_slug):
 
     if category is None:
         return redirect('/gear-store/')
-
-    form = GearForm()
 
     if request.method == 'POST':
         form = GearForm(request.POST)
