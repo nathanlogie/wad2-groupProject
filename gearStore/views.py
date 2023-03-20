@@ -175,18 +175,17 @@ def view_category(request, category_name_slug):
 
 @login_required
 def add_category(request):
-    form = None
+    form = CategoryForm()
     if request.method == 'POST':
         form = CategoryForm(request.POST)
 
         if form.is_valid():
-            form.save()
-            return render(request, 'gearStore/index.html', context_dict)
+            form.save(commit=True)
+            return redirect('/gear-store/')
         else:
             print(form.errors)
 
-    context_dict['form'] = form
-    return render(request, 'gearStore/add_category.html', context_dict)
+    return render(request, 'gearStore/add_category.html', {'form': form, 'categories': Category.objects.all()})
 
 
 @login_required
@@ -198,8 +197,6 @@ def add_gear(request, category_name_slug):
 
     if category is None:
         return redirect('/gear-store/')
-
-    form = GearForm()
 
     if request.method == 'POST':
         form = GearForm(request.POST)
