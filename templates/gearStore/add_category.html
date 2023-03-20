@@ -9,8 +9,7 @@
     <h1 id="page-header">Add a Category!</h1>
     <div class="form-container">
         <div class="form-value">
-            <form id='category_form' method="post" action="{% url "gearStore:add-category" %}"
-                  enctype="multipart/form-data">
+            <form enctype="multipart/form-data" id='category_form' method="post" action="{% url "gearStore:add-category" %}">
                 {% csrf_token %}
                 {% for hidden in form.hidden_fields %}
                     {{ hidden }}
@@ -27,7 +26,7 @@
                 </div>
                 <div class="input-box">
                     <Label for="">Category Image</Label>
-                    <input type="file" name="image" accept="image/png, image/jpeg">
+                    <input type="file" name="picture" accept="image/*" required>
                 </div>
                 <div class="submit-button">
                     <button>Add Category!</button>
