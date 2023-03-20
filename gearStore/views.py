@@ -184,6 +184,7 @@ def add_category(request):
             return redirect('/gear-store/')
         else:
             print(form.errors)
+
     return render(request, 'gearStore/add_categoryTEMP.html', {'form': form})
 
 

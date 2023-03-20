@@ -20,7 +20,8 @@ class UserProfileForm(forms.ModelForm):
 
 class CategoryForm(forms.ModelForm):
     name = forms.CharField(max_length=128,
-                           help_text="Please the enter the category name.")
+                           help_text="Please the enter the new category info below.",
+                           )
     description = forms.CharField(max_length=128)
     dateAdded = forms.DateField(widget=forms.HiddenInput(), required=False)
     picture = forms.ImageField(required=False)
