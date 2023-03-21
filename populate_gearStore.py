@@ -15,40 +15,40 @@ from gearStore.models import Gear, Booking, UserProfile, Category
 def populate():
     gear = [
         {'name': 'Climbing Rope', 'description': 'A strong, dynamic rope used for climbing', 'colour': 'blue',
-         'size': 'medium', 'category': 'Rope'},
+         'size': 'medium', 'category': 'Rope', 'picture': '/gear_images/rope.jpg'},
         {'name': 'Climbing Harnesses', 'description': 'A safety harness worn by climbers', 'colour': 'black',
-         'size': 'medium', 'category': 'Harnesses'},
+         'size': 'medium', 'category': 'Harnesses', 'picture': '/gear_images/harness.jpg'},
         {'name': 'Climbing Helmet', 'description': 'A protective helmet worn by climbers', 'colour': 'green',
-         'size': 'large', 'category': 'Clothing'},
+         'size': 'large', 'category': 'Clothing', 'picture': '/gear_images/helmet.jpg'},
         {'name': 'Climbing Shoes', 'description': 'Specialized shoes used for rock climbing', 'colour': 'green',
-         'size': 'medium', 'category': 'Clothing'},
+         'size': 'medium', 'category': 'Clothing', 'picture': '/gear_images/shoes.jpg'},
         {'name': 'Climbing Chalk Bag', 'description': 'A bag used to hold chalk for climbing', 'colour': 'red',
-         'size': 'small', 'category': 'Accessories'},
+         'size': 'small', 'category': 'Accessories', 'picture': '/gear_images/chalkbag.jpg'},
         {'name': 'Crampons', 'description': 'Spiky attachments for climbing shoes', 'colour': 'black', 'size': 'small',
-         'category': 'Accessories'},
+         'category': 'Accessories', 'picture': '/gear_images/g12.jpg'},
         {'name': 'Steel Ice Axe', 'description': 'A tool used for ice climbing and mountaineering', 'colour': 'blue',
-         'size': 'large', 'category': 'Axes'},
+         'size': 'large', 'category': 'Axes', 'picture': '/gear_images/petzl.jpeg'},
         {'name': 'Raven Ice Axe', 'description': 'A tool used for ice climbing and mountaineering', 'colour': 'black',
-         'size': 'large', 'category': 'Axes'},
+         'size': 'large', 'category': 'Axes', 'picture': '/gear_images/raven.png'},
         {'name': 'Mountaineering Boots', 'description': 'Boots designed for use in mountaineering', 'colour': 'green',
-         'size': 'large', 'category': 'Clothing'},
+         'size': 'large', 'category': 'Clothing', 'picture': '/gear_images/b2.jpg'},
         {'name': 'Backpack', 'description': 'A bag for carrying gear', 'colour': 'blue',
-         'size': 'medium', 'category': 'Backpacks'},
+         'size': 'medium', 'category': 'Backpacks', 'picture': '/gear_images/default.png'},
         {'name': 'Rucksack', 'description': ' A rucksack for carrying gear', 'colour': 'black', 'size': 'small',
-         'category': 'Backpacks'},
+         'category': 'Backpacks', 'picture': '/gear_images/tempest30.jpg'},
         {'name': 'Belay Device', 'description': 'A device used to control a climbing rope', 'colour': 'red',
-         'size': 'small', 'category': 'Accessories'},
+         'size': 'small', 'category': 'Accessories', 'picture': '/gear_images/bigair.jpg'},
         {'name': 'Hiking Boots', 'description': 'Boots designed for use in hiking', 'colour': 'black', 'size': 'medium',
-         'category': 'Clothing'}
+         'category': 'Clothing', 'picture': '/gear_images/summer.png'}
     ]
 
     categories = [
-        {'name': 'Rope', 'description': 'Ropes for mountaineering'},
-        {'name': 'Harnesses', 'description': 'Harnesses for mountaineering'},
-        {'name': 'Accessories', 'description': 'Misc accessories for mountaineering'},
-        {'name': 'Backpacks', 'description': 'Backpacks for mountaineering'},
-        {'name': 'Axes', 'description': 'Ice axes for mountaineering'},
-        {'name': 'Clothing', 'description': 'Clothing items for mountaineering'}
+        {'name': 'Rope', 'description': 'Ropes for mountaineering', 'picture': '/category_images/ropes.jpg'},
+        {'name': 'Harnesses', 'description': 'Harnesses for mountaineering', 'picture': '/category_images/harness.jpg'},
+        {'name': 'Accessories', 'description': 'Misc accessories for mountaineering', 'picture': '/category_images/chalkbag.jpg'},
+        {'name': 'Backpacks', 'description': 'Backpacks for mountaineering', 'picture': '/category_images/bag.jpg'},
+        {'name': 'Axes', 'description': 'Ice axes for mountaineering', 'picture': '/category_images/axes.jpg'},
+        {'name': 'Clothing', 'description': 'Clothing items for mountaineering', 'picture': '/category_images/helmet.jpg'}
     ]
 
     users = []
@@ -70,7 +70,8 @@ def populate():
     for category in categories:
         c = Category.objects.get_or_create(
             name=category['name'],
-            description=category['description']
+            description=category['description'],
+            picture=category['picture']
         )[0]
         c.save()
         categorydict[category['name']] = c
@@ -83,7 +84,8 @@ def populate():
             category=categorydict[gearItem['category']],
             description=gearItem['description'],
             colour=gearItem['colour'],
-            size=gearItem['size']
+            size=gearItem['size'],
+            picture = gearItem['picture']
         )[0]
         gearList.append(g)
         g.save()
