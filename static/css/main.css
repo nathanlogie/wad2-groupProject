@@ -251,6 +251,7 @@ p {
 /*
     Form Styling
  */
+
 .form-container {
     width: 100%;
 }
@@ -328,6 +329,57 @@ h1, h2, h3 {
     color: white;
 }
 
+#action-button {
+    clear: both;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 150px;
+    height: 40px;
+    margin-bottom: 10%;
+    border-radius: 25px;
+    border: none;
+    text-decoration: none;
+    background-color: white;
+    font-weight: bold;
+}
+
+#action-button:hover {
+        color: white;
+    transition: all 0.5s;
+    background-color: grey;
+}
+
+#account-image-form .form-value {
+    margin-top: 0;
+}
+
+#account-image-form .form-value form div.input-box {
+    display:flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+#account-image-form .form-value form div.input-box p {
+    width: 100%;
+}
+
+#account-image-form .form-value form div.input-box input {
+    text-align: center;
+}
+
+#account-image-form .form-value form div.submit-button button {
+    margin-top: 0;
+ }
+
+input#file-choice {
+    clear: both;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 200px;
+}
+
 /*
     Footer styling
 */
@@ -389,4 +441,8 @@ footer {
     .body-column {
         height: auto;
     }
+}
+
+#account-image-form {
+    display: none;
 }

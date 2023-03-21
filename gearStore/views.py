@@ -151,18 +151,24 @@ def account(request):
     if not passwords:
         user_profile.adminStatus = True
     form = AdminForm()
-    if request.method == "Post":
-        form = AdminForm(request.post)
+
+    if request.method == "POST":
+        # get new profile picture
+        form = UserProfileForm(request.POST or None, request.FILES, instance=user_profile)
         if form.is_valid():
-            if not passwords:
-                password = form.save(commit=True)
-            elif user_profile.adminStatus:
-                passwords[0].password = form.password
-            else:
-                if passwords[0].password == form.password:
-                    user_profile.adminStatus = True
-                    user_profile.save()
-    context_dict['password_form'] = form
+            form.save()
+
+    #     form = AdminForm(request.post)
+    #     if form.is_valid():
+    #         if not passwords:
+    #             password = form.save(commit=True)
+    #         elif user_profile.adminStatus:
+    #             passwords[0].password = form.password
+    #         else:
+    #             if passwords[0].password == form.password:
+    #                 user_profile.adminStatus = True
+    #                 user_profile.save()
+    # context_dict['password_form'] = form
     user_bookings = Booking.objects.filter(user = user_profile)
     for booking in user_bookings:
         print(booking)

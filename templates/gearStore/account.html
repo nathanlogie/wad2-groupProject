@@ -6,9 +6,32 @@
     Account
 {% endblock %}
 
+{% block head_block %}
+    <script src="{% static 'js/showForm.js' %}"></script>
+{% endblock %}
+
 {% block body_block %}
     <!-- TODO show account details, etc -->
     <h1 id="page-header">My Account</h1>
+    <img class="picture" src="/media/{{ user_profile.picture }}">
     <p>Hi, {{user.username}}.</p>
-    <a href="{% url 'gearStore:logout' %}">Logout</a>
+    <div class="form-container" id='account-image-form'>
+        <div class="form-value">
+            <form enctype="multipart/form-data" method="post" action="{% url "gearStore:account" %}">
+                {% csrf_token %}
+                {% for hidden in form.hidden_fields %}
+                    {{ hidden }}
+                {% endfor %}
+                <div class="input-box">
+                    <p>Please choose a new profile picture.</p>
+                    <input id="file-choice" type="file" name="picture" accept="image/*" required>
+                </div>
+                <div class="submit-button">
+                    <button>Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <button id="action-button" onclick="showHiddenForm()">Show Profile Picture Manager</button>
+    <p><a href="{% url 'gearStore:logout' %}">Click Here to Logout</a></p>
 {% endblock %}
