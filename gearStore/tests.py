@@ -1,8 +1,10 @@
 import datetime
+import unittest
 
 from django.contrib.auth.models import User
 from django.test import TestCase
 from django.template.defaultfilters import slugify
+from django.urls import reverse
 
 import gearStore.forms
 import populate_gearStore
@@ -100,3 +102,58 @@ class TestPopulateScript(TestCase):
         self.assertTrue(len(gear) > 1)
         self.assertTrue(len(booking) > 1)
 
+
+class ViewTests(TestCase):
+
+    def testAbout(self):
+        url = reverse("gearStore:about")
+        resp = self.client.get(url)
+        self.assertEqual(resp.status_code, 200)
+        self.assertTemplateUsed(resp, "gearStore/about.html")
+
+    def testRedirect(self):
+        url = reverse("gearStore:add-category")
+        self.client.logout()
+        response = self.client.get(url, follow=True)
+        self.assertRedirects(response, "/gear-store/login/?next=/gear-store/add-category/")
+
+    def testLoggedIn(self):
+        model = ModelTests()
+        user = model.createUserprofile()
+        self.client.force_login(user=user.user)
+        url = reverse("gearStore:add-category")
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, 200)
+
+    def testRedirectStatus(self):
+        url = reverse("gearStore:add-category")
+        self.client.logout()
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, 302)
+
+    def testMissingdata(self):
+        model = ModelTests()
+        user = model.createUserprofile()
+        self.client.force_login(user=user.user)
+
+        url = reverse('gearStore:add-category')
+        data = {'name': '',
+                'description': 'TestDescriptioning'}
+
+        response = self.client.post(url, data=data)
+        self.assertEqual(response.status_code, 200)
+        self.assertFormError(response, 'form', 'name', 'This field is required.')
+
+    @unittest.expectedFailure
+    def testAutofillView(self):
+        model = ModelTests()
+        user = model.createUserprofile()
+        self.client.force_login(user=user.user)
+
+        url = reverse('gearStore:add-category')
+        data = {'name': '',
+                'description': 'TestDescriptioning'}
+
+        response = self.client.post(url, data=data)
+        self.assertFormError(response, 'form', 'description', 'This field is required.')
+        self.assertFormError(response, 'form', 'picture', 'This field is required.')
