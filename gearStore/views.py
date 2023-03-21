@@ -7,7 +7,8 @@ from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 
 from gearStore.forms import UserForm, UserProfileForm, CategoryForm, GearForm, AdminForm
-from gearStore.models import UserProfile, Category, Gear, Booking, AdminPassword
+from gearStore.models import UserProfile, Category, Gear, Booking, AdminPassword, COLOUR_CHOICES
+
 
 # Create your views here.
 def index(request):
@@ -169,10 +170,11 @@ def account(request):
     #                 user_profile.adminStatus = True
     #                 user_profile.save()
     # context_dict['password_form'] = form
-    user_bookings = Booking.objects.filter(user = user_profile)
+    user_bookings = Booking.objects.filter(user=user_profile)
     for booking in user_bookings:
         print(booking)
     return render(request, 'gearStore/account.html', context_dict)
+
 
 @login_required
 def process_logout(request):
@@ -220,7 +222,6 @@ def add_category(request):
 
 @login_required
 def add_gear(request, category_name_slug):
-    context_dict = {'categories': Category.objects.all()}
     try:
         category = Category.objects.get(slug=category_name_slug)
     except Category.DoesNotExist:
@@ -228,6 +229,8 @@ def add_gear(request, category_name_slug):
 
     if category is None:
         return redirect('/gear-store/')
+
+    form = GearForm()
 
     if request.method == 'POST':
         form = GearForm(request.POST)
@@ -237,9 +240,10 @@ def add_gear(request, category_name_slug):
                 gear = form.save(commit=False)
                 gear.category = category
                 gear.save()
-                return redirect(reverse('gearStore:view-category', kwargs={'category_name_slug': category_name_slug}))
+                return redirect(reverse('gearStore:view-category',
+                                        kwargs={'category_name_slug': category_name_slug}))
         else:
             print(form.errors)
 
-    context_dict = {'form': form, 'category': category}
+    context_dict = {'form': form, 'category': category, 'categories': Category.objects.all()}
     return render(request, 'gearStore/add_gear.html', context=context_dict)

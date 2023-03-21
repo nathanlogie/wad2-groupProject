@@ -1,28 +1,65 @@
 {% extends 'gearStore/base.html' %}
-<!DOCTYPE html>
-<html lang='en'>
+{% load staticfiles %}
+
 {% block title_block %}
-    Add gear
+    Add a piece of gear
 {% endblock %}
+
 {% block body_block %}
-    <body>
-    <h1>Add an item of gear to {{ category.name }}</h1>
-    <strong>{{ errors }}</strong>
-    <div>
-        <form id="page_form" method="post" action="{% url 'gearStore:add-gear' category.slug %}">
-            {% csrf_token %}
-            {% for hidden in form.hidden_fields %}
-                {{ hidden }}
-            {% endfor %}
-            {% for field in form.visible_fields %}
-                {{ field.errors }}
-                {{ field.help_text }}
-                {{ field }}
-                <br>
-            {% endfor %}
-            <input type="submit" name="submit" value="Add Page"/>
-        </form>
+    <h1 id="page-header">Add a piece of gear!</h1>
+    <div class="form-container">
+        <div class="form-value">
+            <form enctype="multipart/form-data" id='category_form' method="post"
+                  action="{% url "gearStore:add-gear" category_name_slug %}">
+                {% csrf_token %}
+                {% for hidden in form.hidden_fields %}
+                    {{ hidden }}
+                {% endfor %}
+                <div class="input-box">
+                    <ion-icon name="person-outline"></ion-icon>
+                    <Label for="">Gear Name</Label>
+                    <input type="text" name="name" placeholder="category name" required>
+                </div>
+                <div class="input-box">
+                    <ion-icon name="mail-outline"></ion-icon>
+                    <Label for="">Description</Label>
+                    <input type="text" name="description" placeholder="description" required>
+                </div>
+                <div class="input-box">
+                    <Label for="">Gear Image</Label>
+                    <input type="file" name="picture" accept="image/*" required>
+                </div>
+                <div class="input-box">
+                    <Label for="">Colour</Label>
+                    <select name="colour" id="colour">
+                        <option value="SMALL">Small</option>
+                        <option value="MEDIUM">Medium</option>
+                        <option value="LARGE">Large</option>
+                    </select>
+                </div>
+                <div class="input-box">
+                    <Label for="">Colour</Label>
+                    <select name="colour" id="colour">
+                        <option value="GREEN">Green</option>
+                        <option value="BLUE">Blue</option>
+                        <option value="RED">Red</option>
+                        <option value="ORANGE">Orange</option>
+                        <option value="BLACK">Black</option>
+                    </select>
+                </div>
+                <div class="submit-button">
+                    <button>Add Category!</button>
+                </div>
+            </form>
+        </div>
     </div>
-    </body>
+    {% if errors %}
+        <ul class='form-errors'>
+            <li class="error-warning">An error has occurred:</li>
+            {% for error in errors %}
+                <li>{{ error }}</li>
+            {% endfor %}
+        </ul>
+        <br>
+    {% endif %}
 {% endblock %}
-</html>
