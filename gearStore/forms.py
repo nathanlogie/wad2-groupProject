@@ -46,9 +46,10 @@ class GearForm(forms.ModelForm):
         model = Gear
         exclude = ('category',)
 
+
 class AdminForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput)
-    
+
     class Meta:
         model = AdminPassword
         fields = ('password',)
