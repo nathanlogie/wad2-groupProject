@@ -16,19 +16,22 @@
                 {% for hidden in form.hidden_fields %}
                     {{ hidden }}
                 {% endfor %}
+
                 <div class="input-box">
                     <ion-icon name="person-outline"></ion-icon>
                     <Label for="">Gear Name</Label>
                     <input type="text" name="name" placeholder="gear name" required>
                 </div>
+
                 <div class="input-box">
                     <ion-icon name="mail-outline"></ion-icon>
                     <Label for="">Description</Label>
                     <input type="text" name="description" placeholder="description" required>
                 </div>
+
                 <div class="input-box">
                     <Label for="">Gear Image</Label>
-                    <input type="file" name="picture" accept="image/*">
+                    <input type="file" name="picture" accept="image/*" required>
                 </div>
 
                 <div class="input-box">

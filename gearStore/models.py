@@ -53,7 +53,7 @@ class Gear(models.Model):
     name = models.CharField(max_length=128)
     description = models.CharField(max_length=128)
     dateAdded = models.DateField(auto_now_add=True)
-    picture = models.ImageField(default="gear_images/default.png")
+    picture = models.ImageField(upload_to="gear_images", default="gear_images/default.png")
     colour = models.CharField(max_length=6, choices=COLOUR_CHOICES, default="GREEN")
     size = models.CharField(max_length=30, choices=SIZE_CHOICES, default="SMALL")
     slug = models.SlugField(unique=True)
