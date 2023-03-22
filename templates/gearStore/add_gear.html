@@ -1,6 +1,7 @@
 {% extends 'gearStore/base.html' %}
 {% load staticfiles %}
-
+<!DOCTYPE html>
+<html lang='en'>
 {% block title_block %}
     Add a piece of gear
 {% endblock %}
@@ -9,8 +10,8 @@
     <h1 id="page-header">Add a piece of gear!</h1>
     <div class="form-container">
         <div class="form-value">
-            <form enctype="multipart/form-data" id='category_form' method="post"
-                  action="{% url "gearStore:add-gear" category_name_slug %}">
+            <form enctype="multipart/form-data" id='gear_form' method="post"
+                  action="{% url "gearStore:add-gear" category.slug %}">
                 {% csrf_token %}
                 {% for hidden in form.hidden_fields %}
                     {{ hidden }}
@@ -18,7 +19,7 @@
                 <div class="input-box">
                     <ion-icon name="person-outline"></ion-icon>
                     <Label for="">Gear Name</Label>
-                    <input type="text" name="name" placeholder="category name" required>
+                    <input type="text" name="name" placeholder="gear name" required>
                 </div>
                 <div class="input-box">
                     <ion-icon name="mail-outline"></ion-icon>
@@ -27,28 +28,31 @@
                 </div>
                 <div class="input-box">
                     <Label for="">Gear Image</Label>
-                    <input type="file" name="picture" accept="image/*" required>
+                    <input type="file" name="picture" accept="image/*">
                 </div>
+
                 <div class="input-box">
                     <Label for="">Colour</Label>
                     <select name="colour" id="colour">
-                        <option value="SMALL">Small</option>
-                        <option value="MEDIUM">Medium</option>
-                        <option value="LARGE">Large</option>
+                        <option value="green">Green</option>
+                        <option value="blue">Blue</option>
+                        <option value="red">Red</option>
+                        <option value="orange">Orange</option>
+                        <option value="black">Black</option>
                     </select>
                 </div>
+
                 <div class="input-box">
-                    <Label for="">Colour</Label>
-                    <select name="colour" id="colour">
-                        <option value="GREEN">Green</option>
-                        <option value="BLUE">Blue</option>
-                        <option value="RED">Red</option>
-                        <option value="ORANGE">Orange</option>
-                        <option value="BLACK">Black</option>
+                    <Label for="">Size</Label>
+                    <select name="size" id="size">
+                        <option value="small">Small</option>
+                        <option value="medium">Medium</option>
+                        <option value="large">Large</option>
                     </select>
                 </div>
+
                 <div class="submit-button">
-                    <button>Add Category!</button>
+                    <button>Add Gear!</button>
                 </div>
             </form>
         </div>

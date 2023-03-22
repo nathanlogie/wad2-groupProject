@@ -45,6 +45,7 @@ class GearForm(forms.ModelForm):
     class Meta:
         model = Gear
         exclude = ('category',)
+        fields = ('name', 'description', 'picture', 'colour', 'size')
 
 
 class AdminForm(forms.ModelForm):

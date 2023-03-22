@@ -228,7 +228,7 @@ def add_gear(request, category_name_slug):
         category = None
 
     if category is None:
-        return redirect('/gear-store/')
+        return redirect(reverse("gearStore:index"))
 
     form = GearForm()
 
