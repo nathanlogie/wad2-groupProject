@@ -233,7 +233,7 @@ def add_gear(request, category_name_slug):
     form = GearForm()
 
     if request.method == 'POST':
-        form = GearForm(request.POST)
+        form = GearForm(request.POST, request.FILES)
 
         if form.is_valid():
             if category:
