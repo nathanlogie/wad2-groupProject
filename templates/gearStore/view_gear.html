@@ -14,8 +14,8 @@
             </div>
             <div class="right-text">
                 <p><a href="{% url 'gearStore:view-category' category.slug %}">Category: {{ gear.category }}</a></p>
-                <p>Colour: {{ gear.colour }}</p>
-                <p>Size: {{ gear.size }}</p>
+                <p>Colour: {{ gear.colour.title }}</p>
+                <p>Size: {{ gear.size.title }}</p>
                 <p>Date Added: {{ gear.dateAdded }}</p>
                 <p class="below-picture">Description: {{ gear.description }}</p>
             </div>
