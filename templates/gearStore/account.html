@@ -17,9 +17,9 @@
     <p>Hi, {{user.username}}.</p>
     <div class="form-container" id='account-image-form'>
         <div class="form-value">
-            <form enctype="multipart/form-data" method="post" action="{% url "gearStore:account" %}">
+            <form enctype="multipart/form-data" method="post" action="{% url 'gearStore:account' %}">
                 {% csrf_token %}
-                {% for hidden in form.hidden_fields %}
+                {% for hidden in picture_form.hidden_fields %}
                     {{ hidden }}
                 {% endfor %}
                 <div class="input-box">
@@ -33,5 +33,57 @@
         </div>
     </div>
     <button id="action-button" onclick="showHiddenForm()">Show Profile Picture Manager</button>
+    <div class="form-container">
+        <div class="form-value">
+            <form method="post" action="{% url 'gearStore:account' %}">
+                {% csrf_token %}
+                <div class="input-box">
+                    <ion-icon name="lock-closed-outline"></ion-icon>
+                    <Label for="">Admin Password</Label>
+                    <input type="password" name="password" placeholder="Admin Password" required>
+                </div>
+                <div class="submit-button">
+                    <button>
+                        {% if user_profile.adminStatus %}
+                            Change Password
+                        {% else %}
+                            Become Admin
+                        {% endif %}
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <h2>
+        <Button class="borrow-menu-title" id="user-bookings-title" onclick="setBorrowMenu('user')" style="text-decoration: underline;">My Borrowed Gear</Button>
+        {% if user_profile.adminStatus %}
+            | <Button class="borrow-menu-title" onclick="setBorrowMenu('all')" id="all-bookings-title">All Borrowed Gear</Button>
+        {% endif %}
+    </h2>
+    <div id="user-bookings">
+        {% if user_bookings %}
+            <div class="menu-container">
+                {% for booking in user_bookings %}
+                    <a href="{% url 'gearStore:view-gear' booking.gearItem.slug %}" class="menu-card-link" style="background-image: url('/media/{{ booking.gearItem.picture }}')"><div class="menu-card"><p>{{ booking.gearItem.name }}</p></div></a>
+                {% endfor %}
+            </div>
+        {% else %}
+            <strong>You currently have no borrowed Gear.</strong>
+        {% endif %}
+    </div>
+    {% if user_profile.adminStatus %}
+        <div id="all-bookings" style="display: none;">
+            {% if all_bookings %}
+                <div class="menu-container">
+                    {% for booking in all_bookings %}
+                        <a href="{% url 'gearStore:view-gear' booking.gearItem.slug %}" class="menu-card-link" style="background-image: url('/media/{{ booking.gearItem.picture }}')"><div class="menu-card"><p>{{ booking.gearItem.name }}</p></div></a>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <strong>There is currently no borrowed gear.</strong>
+            {% endif %}
+        </div>
+    {% endif %}
     <p><a href="{% url 'gearStore:logout' %}">Click Here to Logout</a></p>
 {% endblock %}

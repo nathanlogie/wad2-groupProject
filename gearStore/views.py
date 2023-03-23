@@ -151,28 +151,43 @@ def account(request):
     passwords = AdminPassword.objects.all()
     if not passwords:
         user_profile.adminStatus = True
-    form = AdminForm()
+    password_form = AdminForm()
+    picture_form = UserProfileForm()
 
     if request.method == "POST":
-        # get new profile picture
-        form = UserProfileForm(request.POST or None, request.FILES, instance=user_profile)
-        if form.is_valid():
-            form.save()
+        post_type = request.POST.get("post-type")
+        if post_type == "picture":
+            # get new profile picture
+            picture_form = UserProfileForm(request.POST or None, request.FILES, instance=user_profile)
+            if picture_form.is_valid():
+                picture_form.save()
+        elif post_type == "password":
+            password_form = AdminForm(request.POST)
+            if password_form.is_valid():
+                if not passwords:
+                    password = password_form.save(commit=True)
+                elif user_profile.adminStatus:
+                    passwords[0].password = password_form.password
+                else:
+                    if passwords[0].password == password_form.password:
+                        user_profile.adminStatus = True
+                        user_profile.save()
+    context_dict['picture_form'] = picture_form
+    context_dict['password_form'] = password_form
 
-    #     form = AdminForm(request.post)
-    #     if form.is_valid():
-    #         if not passwords:
-    #             password = form.save(commit=True)
-    #         elif user_profile.adminStatus:
-    #             passwords[0].password = form.password
-    #         else:
-    #             if passwords[0].password == form.password:
-    #                 user_profile.adminStatus = True
-    #                 user_profile.save()
-    # context_dict['password_form'] = form
     user_bookings = Booking.objects.filter(user=user_profile)
     for booking in user_bookings:
-        print(booking)
+        if not booking.is_current():
+            user_bookings = user_bookings.exclude(id = booking.id)
+    context_dict["user_bookings"] = user_bookings
+
+    if user_profile.adminStatus:
+        all_bookings = Booking.objects.all()
+        for booking in all_bookings:
+            if not booking.is_current():
+                all_bookings = all_bookings.exclude(id = booking.id)
+        context_dict["all_bookings"] = all_bookings
+
     return render(request, 'gearStore/account.html', context_dict)
 
 

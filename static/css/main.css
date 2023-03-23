@@ -452,6 +452,16 @@ footer {
     display: none;
 }
 
+.borrow-menu-title{
+    background: none;
+    outline: none;
+    color: inherit;
+    font-size: inherit;
+    font-family: inherit;
+    padding: none;
+    border: none;
+}
+
 .input-box Label.dropdown-label {
     margin-top: 0;
     margin-right: 10px;
