@@ -7,7 +7,7 @@
 {% endblock %}
 
 {% block body_block %}
-    <h1 id="page-header">Add a piece of gear!</h1>
+    <h1 id="page-header">Add a new Piece of Gear</h1>
     <div class="form-container">
         <div class="form-value">
             <form enctype="multipart/form-data" id='gear_form' method="post"
@@ -35,7 +35,7 @@
                 </div>
 
                 <div class="input-box">
-                    <Label for="">Colour</Label>
+                    <Label class="dropdown-label" for="">Colour</Label>
                     <select name="colour" id="colour">
                         <option value="green">Green</option>
                         <option value="blue">Blue</option>
@@ -46,7 +46,7 @@
                 </div>
 
                 <div class="input-box">
-                    <Label for="">Size</Label>
+                    <Label class="dropdown-label" for="">Size</Label>
                     <select name="size" id="size">
                         <option value="small">Small</option>
                         <option value="medium">Medium</option>

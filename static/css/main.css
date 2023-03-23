@@ -380,6 +380,11 @@ input#file-choice {
     width: 200px;
 }
 
+.dropdown-label {
+    margin-top: 0;
+    float: left;
+}
+
 /*
     Footer styling
 */
@@ -445,4 +450,9 @@ footer {
 
 #account-image-form {
     display: none;
+}
+
+.input-box Label.dropdown-label {
+    margin-top: 0;
+    margin-right: 10px;
 }
