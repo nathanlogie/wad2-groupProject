@@ -62,7 +62,7 @@ def register(request):
 
         context_dict['user_form'] = user_form
         context_dict['registered'] = registered
-        context_dict['errors'] = errorList
+
         return render(request, 'gearStore/register.html', context=context_dict)
 
 
