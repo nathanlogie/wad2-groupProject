@@ -168,9 +168,10 @@ def account(request):
                 if not passwords:
                     password = password_form.save(commit=True)
                 elif user_profile.adminStatus:
-                    passwords[0].password = password_form.password
+                    passwords[0].password = request.POST.get("password")
+                    passwords[0].save()
                 else:
-                    if passwords[0].password == password_form.password:
+                    if passwords[0].password == request.POST.get("password"):
                         user_profile.adminStatus = True
                         user_profile.save()
     context_dict['picture_form'] = picture_form

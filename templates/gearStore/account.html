@@ -22,6 +22,7 @@
                 {% for hidden in picture_form.hidden_fields %}
                     {{ hidden }}
                 {% endfor %}
+                <input type="hidden" name="post-type" value="picture">
                 <div class="input-box">
                     <p>Please choose a new profile picture.</p>
                     <input id="file-choice" type="file" name="picture" accept="image/*" required>
@@ -37,6 +38,7 @@
         <div class="form-value">
             <form method="post" action="{% url 'gearStore:account' %}">
                 {% csrf_token %}
+                <input type="hidden" name="post-type" value="password">
                 <div class="input-box">
                     <ion-icon name="lock-closed-outline"></ion-icon>
                     <Label for="">Admin Password</Label>
