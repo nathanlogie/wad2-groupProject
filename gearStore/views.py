@@ -59,7 +59,7 @@ def register(request):
         for error_category in user_form.errors:
             for error in user_form.errors[error_category]:
                 errorList.append(error)
-
+        context_dict['errors'] = errorList
         context_dict['user_form'] = user_form
         context_dict['registered'] = registered
 
@@ -206,6 +206,7 @@ def view_category(request, category_name_slug):
 
 @login_required
 def add_category(request):
+    errorList = []
     context_dict = {'categories': Category.objects.all()}
     form = None
     if request.method == 'POST':
@@ -216,12 +217,17 @@ def add_category(request):
             return redirect('/gear-store/')
         else:
             print(form.errors)
-
-    return render(request, 'gearStore/add_category.html', {'form': form, 'categories': Category.objects.all()})
+            for error_category in form.errors:
+                for error in form.errors[error_category]:
+                    errorList.append(error)
+    context_dict['errors'] = errorList
+    context_dict['form'] = form
+    return render(request, 'gearStore/add_category.html', context_dict)
 
 
 @login_required
 def add_gear(request, category_name_slug):
+    context_dict = {'categories': Category.objects.all()}
     try:
         category = Category.objects.get(slug=category_name_slug)
     except Category.DoesNotExist:
@@ -244,6 +250,6 @@ def add_gear(request, category_name_slug):
                                         kwargs={'category_name_slug': category_name_slug}))
         else:
             print(form.errors)
-
-    context_dict = {'form': form, 'category': category, 'categories': Category.objects.all()}
+    context_dict['form'] = form
+    context_dict['category'] = category
     return render(request, 'gearStore/add_gear.html', context=context_dict)
