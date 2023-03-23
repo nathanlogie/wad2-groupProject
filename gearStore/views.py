@@ -128,6 +128,7 @@ def view_gear(request, gear_name_slug):
         for borrow in borrows:
             if borrow.is_current():
                 current_borrow = True
+                context_dict["borrow"] = borrow
                 break
         context_dict['borrowed'] = current_borrow
 

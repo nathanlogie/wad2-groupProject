@@ -22,6 +22,7 @@
         </div>
         {% if borrowed %}
             <p>You cannot currently borrow this item - it has already been borrowed!</p>
+            <p>Return Date: {{ borrow.dateToReturn}}</p>
         {% else %}
             <p>Not currently borrowed</p>
             {% if user.is_authenticated %}
