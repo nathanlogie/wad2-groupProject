@@ -223,6 +223,9 @@ def view_category(request, category_name_slug):
 
 @login_required
 def add_category(request):
+    user_profile = UserProfile.objects.get(user=request.user)
+    if not user_profile.adminStatus:
+        return redirect(reverse("gearStore:admin-error"))
     errorList = []
     context_dict = {'categories': Category.objects.all()}
     form = None
@@ -244,6 +247,9 @@ def add_category(request):
 
 @login_required
 def add_gear(request, category_name_slug):
+    user_profile = UserProfile.objects.get(user=request.user)
+    if not user_profile.adminStatus:
+        return redirect(reverse("gearStore:admin-error"))
     context_dict = {'categories': Category.objects.all()}
     try:
         category = Category.objects.get(slug=category_name_slug)
