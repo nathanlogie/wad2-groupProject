@@ -8,6 +8,9 @@
 {% block body_block %}
     <h1 id="page-header">Gear</h1>
     <p>Here you can see the types of gear available for borrowing.</p>
+    {% if admin %}
+        <p><a href="{% url 'gearStore:add-category' %}">Add a New Category</a></p>
+    {% endif %}
     {% if categories %}
         <div class="menu-container">
             {% for c in categories %}

@@ -9,6 +9,9 @@
     {% if category %}
         <h1 id="page-header">{{ category.name }}</h1>
         <p>Here you can see pieces of gear available to be borrowed:</p>
+        {% if admin %}
+            <p><a href="{% url 'gearStore:add-gear' category.slug %}">Add a New Piece of Gear</a></p>
+        {% endif %}
         {% if gear %}
             <div class="menu-container">
                 {% for piece_of_gear in gear %}
