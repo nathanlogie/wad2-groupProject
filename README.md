@@ -7,5 +7,3 @@ Project overview:
     Similarly for those who store the gear, there are challenges that lie in knowing where any given piece of gear is, who has borrowed it, and when it should be returned.
 
     Gear Store will reconcile these two groups by providing a portal where gear can be uploaded,  displayed and borrowed easily, as a catalogue, as well as managing the admin for those who store it.
-
-Added by Kin

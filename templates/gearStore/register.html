@@ -2,7 +2,7 @@
 {% load staticfiles %}
 
 {% block head_block %}
-    <script type="text/javascript" src="{% static 'js/password_check.js' %}"> </script>
+    <script src="{% static 'js/passwordCheck.js' %}"> </script>
 {% endblock %}
 
 {% block title_block %}
@@ -31,7 +31,7 @@
                     <input type="password" name="password" placeholder="Password1!" id="password" required>
                 </div>
                 <div class="submit-button">
-                    <button type="button" id ="login-button" onclick="process_login()">Sign Up </button>
+                    <button type="button" id ="login-button" onclick="process_login('registration-form')">Sign Up </button>
                 </div>
             </form>
         </div>

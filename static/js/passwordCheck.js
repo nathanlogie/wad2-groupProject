@@ -4,8 +4,8 @@
         return regex.test(password);
     }
 
-  function process_login() {
-    var form = document.getElementById('registration-form')
+  function process_login(thisForm) {
+    var form = document.getElementById(thisForm)
     var password = document.getElementById('password').value;
     if (checkPassword(password)) {
       form.submit()

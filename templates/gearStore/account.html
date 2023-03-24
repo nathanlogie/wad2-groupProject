@@ -8,6 +8,8 @@
 
 {% block head_block %}
     <script src="{% static 'js/showForm.js' %}"></script>
+    <script src="{% static 'js/passwordCheck.js' %}"> </script>
+    <script src="{% static 'js/logoutAlert.js' %}"></script>
 {% endblock %}
 
 {% block body_block %}
@@ -36,16 +38,16 @@
     <button id="action-button" onclick="showHiddenForm()">Show Profile Picture Manager</button>
     <div class="form-container">
         <div class="form-value">
-            <form method="post" action="{% url 'gearStore:account' %}">
+            <form method="post" action="{% url 'gearStore:account' %}" id ="account-form">
                 {% csrf_token %}
                 <input type="hidden" name="post-type" value="password">
                 <div class="input-box">
                     <ion-icon name="lock-closed-outline"></ion-icon>
                     <Label for="">Admin Password</Label>
-                    <input type="password" name="password" placeholder="Admin Password" required>
+                    <input type="password" name="password" id="password" placeholder="Admin Password" required>
                 </div>
                 <div class="submit-button">
-                    <button>
+                    <button onclick="process_login('account-form')">
                         {% if user_profile.adminStatus %}
                             Change Password
                         {% else %}
@@ -87,5 +89,5 @@
             {% endif %}
         </div>
     {% endif %}
-    <p><a href="{% url 'gearStore:logout' %}">Click Here to Logout</a></p>
+    <p><a href="{% url 'gearStore:logout' %}" onclick="logoutAlert()">Click Here to Logout</a></p>
 {% endblock %}
