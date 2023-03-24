@@ -103,12 +103,12 @@ def contact(request):
 
 def category_menu(request):
     context_dict = {'categories': Category.objects.all()}
-
-    user_profile = UserProfile.objects.get(user=request.user)
     context_dict['admin'] = False
-    if user_profile:
-        if user_profile.adminStatus:
-            context_dict['admin'] = True
+    if request.user.is_authenticated:
+        user_profile = UserProfile.objects.get(user=request.user)
+        if user_profile:
+            if user_profile.adminStatus:
+                context_dict['admin'] = True
 
     context_dict['category'] = None
     return render(request, 'gearStore/category_menu.html', context_dict)
@@ -218,11 +218,12 @@ def admin_error(request):
 def view_category(request, category_name_slug):
     context_dict = {'categories': Category.objects.all()}
 
-    user_profile = UserProfile.objects.get(user=request.user)
     context_dict['admin'] = False
-    if user_profile:
-        if user_profile.adminStatus:
-            context_dict['admin'] = True
+    if request.user.is_authenticated:
+        user_profile = UserProfile.objects.get(user=request.user)
+        if user_profile:
+            if user_profile.adminStatus:
+                context_dict['admin'] = True
 
     try:
         category = Category.objects.get(slug=category_name_slug)
