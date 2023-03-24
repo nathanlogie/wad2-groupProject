@@ -8,7 +8,8 @@
 
 {% block head_block %}
     <script src="{% static 'js/showForm.js' %}"></script>
-    <script type="text/javascript" src="{% static 'js/password_check.js' %}"> </script>
+    <script src="{% static 'js/passwordCheck.js' %}"> </script>
+    <script src="{% static 'js/logoutAlert.js' %}"></script>
 {% endblock %}
 
 {% block body_block %}
@@ -88,5 +89,5 @@
             {% endif %}
         </div>
     {% endif %}
-    <p><a href="{% url 'gearStore:logout' %}">Click Here to Logout</a></p>
+    <p><a href="{% url 'gearStore:logout' %}" onclick="logoutAlert()">Click Here to Logout</a></p>
 {% endblock %}
